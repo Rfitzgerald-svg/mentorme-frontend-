@@ -1,12 +1,14 @@
+// App.jsx — Main MentorMe App with Routing
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Register from "./routes/Register";
-import Login from "./routes/Login";
-import QuizMentor from "./routes/QuizMentor";
-import QuizMentee from "./routes/QuizMentee";
-import Dashboard from "./routes/Dashboard";
-import ChatRoom from "./routes/ChatRoom";
-import CalendarPage from "./routes/CalendarPage";
+import Register from "./routes/Register.jsx";
+import Login from "./routes/Login.jsx";
+import QuizMentor from "./routes/QuizMentor.jsx";
+import QuizMentee from "./routes/QuizMentee.jsx";
+import Dashboard from "./routes/Dashboard.jsx";
+import ChatRoom from "./routes/ChatRoom.jsx";
+import CalendarPage from "./routes/CalendarPage.jsx";
 
 export default function App() {
   return (
