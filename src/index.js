@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App"; // ✅ This matches the default export from your App.jsx
+import App from "./App"; // ✅ Corrected import name
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
