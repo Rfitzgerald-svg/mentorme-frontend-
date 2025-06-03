@@ -1,42 +1,39 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button"; // replace if you're not using shadcn/ui
+import "./Landing.css"; // Custom styling
 
 export default function Landing() {
-  const navigate = useNavigate();
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-slate-100 flex flex-col">
-      <header className="w-full px-6 py-4 shadow-sm flex justify-between items-center bg-white">
-        <h1 className="text-2xl font-bold text-blue-700">MentorMe</h1>
-        <button
-          onClick={() => navigate("/register")}
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 shadow-sm transition"
-        >
-          Launch App
-        </button>
+    <div className="landing-container">
+      <header className="landing-header">
+        <div className="logo">
+          <span className="logo-bold">M</span>
+          <span className="logo-light">m</span>
+        </div>
+        <nav className="nav-buttons">
+          <Link to="/login">
+            <Button className="cta-button">Get Started</Button>
+          </Link>
+        </nav>
       </header>
 
-      <main className="flex-1 flex items-center justify-center px-6">
-        <div className="text-center max-w-2xl">
-          <h2 className="text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-            The Future of Mentorship. <br /> Built for Schools.
-          </h2>
-          <p className="text-lg text-gray-600 mb-8">
-            MentorMe connects students and professionals through shared goals,
-            authentic reflection, and AI-powered support.
-          </p>
-          <button
-            onClick={() => navigate("/register")}
-            className="bg-green-600 text-white text-lg px-6 py-3 rounded-full hover:bg-green-700 shadow-md transition"
-          >
-            Get Started
-          </button>
+      <section className="hero">
+        <div className="hero-content">
+          <h1>MentorMe – Leading the next generation</h1>
+          <p>A mentorship platform built to connect students, alumni, and opportunity in one intuitive hub.</p>
+          <Link to="/login">
+            <Button className="cta-button">Sign in with Google</Button>
+          </Link>
         </div>
-      </main>
+      </section>
 
-      <footer className="text-center text-sm text-gray-400 py-6">
-        © {new Date().getFullYear()} MentorMe. Empowering purpose-driven connections.
-      </footer>
+      <section className="info-section">
+        <h2>How It Works</h2>
+        <p>Take a quiz, match with mentors, learn through guidance, and grow through experience.</p>
+        <h2>Who It's For</h2>
+        <p>Students. Alumni. Schools. Communities. You.</p>
+      </section>
     </div>
   );
 }
