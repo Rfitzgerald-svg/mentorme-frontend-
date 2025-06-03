@@ -2,9 +2,6 @@
   height: 100vh;
   font-family: 'Inter', sans-serif;
   color: white;
-  background: linear-gradient(to right, #0F2027, #203A43, #2C5364), url('/background.jpg');
-  background-size: cover;
-  background-blend-mode: overlay;
   overflow-x: hidden;
 }
 
