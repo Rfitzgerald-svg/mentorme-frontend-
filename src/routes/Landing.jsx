@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
+import bgImage from "../assets/background.jpg";
 
 export default function Landing() {
   return (
     <div
       className="landing-container"
       style={{
-        backgroundImage: "linear-gradient(to right, #0F2027, #203A43, #2C5364), url('/background.jpg')",
+        backgroundImage: `linear-gradient(to right, #0F2027, #203A43, #2C5364), url(${bgImage})`,
         backgroundSize: "cover",
         backgroundBlendMode: "overlay"
       }}
