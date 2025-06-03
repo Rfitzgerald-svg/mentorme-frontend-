@@ -4,7 +4,14 @@ import "./Landing.css";
 
 export default function Landing() {
   return (
-    <div className="landing-container">
+    <div
+      className="landing-container"
+      style={{
+        backgroundImage: "linear-gradient(to right, #0F2027, #203A43, #2C5364), url('/background.jpg')",
+        backgroundSize: "cover",
+        backgroundBlendMode: "overlay"
+      }}
+    >
       <header className="landing-header">
         <div className="logo">
           <span className="logo-bold">M</span>
