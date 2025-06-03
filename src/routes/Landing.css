@@ -1,0 +1,64 @@
+.landing-container {
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  background: linear-gradient(to right, #0F2027, #203A43, #2C5364), url('/background.jpg');
+  background-size: cover;
+  background-blend-mode: overlay;
+  overflow-x: hidden;
+}
+
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.logo-bold {
+  color: #003366; /* Dark Ocean Blue */
+}
+
+.logo-light {
+  color: #4CAFFF; /* Carolina Blue */
+}
+
+.nav-buttons .cta-button {
+  background-color: #4CAFFF;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: white;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.info-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f9f9f9;
+  color: #333;
+}
