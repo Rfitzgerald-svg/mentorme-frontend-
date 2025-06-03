@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button"; // replace if you're not using shadcn/ui
-import "./Landing.css"; // Custom styling
+import "./Landing.css";
 
 export default function Landing() {
   return (
@@ -13,7 +12,7 @@ export default function Landing() {
         </div>
         <nav className="nav-buttons">
           <Link to="/login">
-            <Button className="cta-button">Get Started</Button>
+            <button className="cta-button">Get Started</button>
           </Link>
         </nav>
       </header>
@@ -23,7 +22,7 @@ export default function Landing() {
           <h1>MentorMe – Leading the next generation</h1>
           <p>A mentorship platform built to connect students, alumni, and opportunity in one intuitive hub.</p>
           <Link to="/login">
-            <Button className="cta-button">Sign in with Google</Button>
+            <button className="cta-button">Sign in with Google</button>
           </Link>
         </div>
       </section>
