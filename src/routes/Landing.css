@@ -2,7 +2,7 @@
   height: 100vh;
   font-family: 'Inter', sans-serif;
   color: white;
-  background: linear-gradient(to right, #0F2027, #203A43, #2C5364), url('/background.jpg');
+  background: linear-gradient(to right, #0F2027, #203A43, #2C5364), url('background.jpg');
   background-size: cover;
   background-blend-mode: overlay;
   overflow-x: hidden;
@@ -34,6 +34,8 @@
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .hero {
