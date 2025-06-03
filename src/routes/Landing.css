@@ -2,7 +2,7 @@
   height: 100vh;
   font-family: 'Inter', sans-serif;
   color: white;
-  background: linear-gradient(to right, #0F2027, #203A43, #2C5364), url('background.jpg');
+  background: linear-gradient(to right, #0F2027, #203A43, #2C5364), url('/background.jpg');
   background-size: cover;
   background-blend-mode: overlay;
   overflow-x: hidden;
@@ -21,11 +21,11 @@
 }
 
 .logo-bold {
-  color: #003366; /* Dark Ocean Blue */
+  color: #003366;
 }
 
 .logo-light {
-  color: #4CAFFF; /* Carolina Blue */
+  color: #4CAFFF;
 }
 
 .nav-buttons .cta-button {
