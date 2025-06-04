@@ -1,73 +1,54 @@
 import React from "react";
-import { computeMatchScore } from "../utils/MatchService";
-
-const sampleMentee = [
-  "Tech industry",
-  "Remote work",
-  "Coding club",
-  "Listener",
-  "STEM outreach",
-  "Software",
-  "Build a startup",
-  "Slack",
-  "Career clarity",
-  "Hands-on mentor"
-];
-
-const sampleMentors = [
-  {
-    name: "Dana Patel",
-    title: "Product Manager, Google",
-    background: [
-      "Tech industry",
-      "Remote work",
-      "Robotics club",
-      "Listener",
-      "Career talks",
-      "Product",
-      "Help startups",
-      "Slack",
-      "Career guidance",
-      "Hands-on mentor"
-    ]
-  },
-  {
-    name: "Jordan Lee",
-    title: "Software Engineer, Netflix",
-    background: [
-      "Software",
-      "Hybrid work",
-      "Coding club",
-      "Hands-on",
-      "Volunteering",
-      "Engineering",
-      "Build companies",
-      "Email",
-      "Startup advice",
-      "Direct mentorship"
-    ]
-  }
-];
+import { Link } from "react-router-dom";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Your Mentor Matches</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {sampleMentors.map((mentor, idx) => {
-          const score = computeMatchScore(sampleMentee, mentor.background);
-          return (
-            <div key={idx} className="bg-white p-4 shadow rounded-xl">
-              <div className="font-semibold text-lg">{mentor.name}</div>
-              <div className="text-sm text-gray-600 mb-2">{mentor.title}</div>
-              <div className="text-sm mb-2">Match Score: <strong>{score}%</strong></div>
-              <button className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Message Mentor
-              </button>
-            </div>
-          );
-        })}
-      </div>
+    <div className="dashboard-wrapper">
+      <aside className="sidebar">
+        <h2 className="logo">MentorMe</h2>
+        <nav>
+          <ul>
+            <li><Link to="/dashboard">Dashboard</Link></li>
+            <li><Link to="/network">My Network</Link></li>
+            <li><Link to="/bot">My Bot</Link></li>
+            <li><Link to="/protips">Pro Tips</Link></li>
+            <li><Link to="/profile">Profile</Link></li>
+            <li><Link to="/admin">Admin Panel</Link></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main className="feed">
+        <h1>Welcome back 👋</h1>
+        <section className="post-card">
+          <h3>🎉 Sarah M. just landed an internship at Google!</h3>
+          <p>“Thanks to my mentor Alex and everyone on MentorMe!”</p>
+        </section>
+        <section className="post-card">
+          <h3>📣 Jake W. is hosting a financial literacy workshop</h3>
+          <p>Join us Tuesday at 6pm EST. RSVP in your calendar.</p>
+        </section>
+        <section className="post-card">
+          <h3>💼 New mentorship opening in law</h3>
+          <p>Interested in law school? Apply to connect with Casey J.</p>
+        </section>
+      </main>
+
+      <aside className="widgets">
+        <div className="widget">
+          <h4>Featured Pro Tip</h4>
+          <p>“Ask questions that show you’ve done your research.”</p>
+        </div>
+        <div className="widget">
+          <h4>Upcoming Session</h4>
+          <p>Tuesday @ 3PM with mentor Alex Johnson</p>
+        </div>
+        <div className="widget">
+          <h4>Your Stats</h4>
+          <p>4 Connections · 2 Messages · 60% Progress</p>
+        </div>
+      </aside>
     </div>
   );
 }
