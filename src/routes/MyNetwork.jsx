@@ -8,7 +8,7 @@ const mockNodes = [
     role: "Student at The Taft School",
     type: "center",
     img: "https://randomuser.me/api/portraits/men/11.jpg",
-    bio: "Focused on finance and lacrosse. Looking to connect with alumni in business.",
+    bio: "Finance and lacrosse. Searching for alumni in business.",
   },
   {
     id: "2",
@@ -16,7 +16,7 @@ const mockNodes = [
     role: "Mentor at JPMorgan",
     type: "direct",
     img: "https://randomuser.me/api/portraits/men/32.jpg",
-    bio: "VP at JPMorgan. Former lacrosse captain. Love mentoring students into finance.",
+    bio: "VP at JPMorgan. Lacrosse captain. Mentor in finance.",
     mutuals: "Joaquin and 3 others"
   },
   {
@@ -25,7 +25,7 @@ const mockNodes = [
     role: "Student at Taft",
     type: "recommended",
     img: "https://randomuser.me/api/portraits/women/44.jpg",
-    bio: "Also interested in investment banking. Club leader at Taft Women in Business.",
+    bio: "Club leader at Taft Women in Business. Finance track.",
     mutuals: "2 shared activities"
   },
   {
@@ -34,7 +34,7 @@ const mockNodes = [
     role: "Alum at Choate",
     type: "cross",
     img: "https://randomuser.me/api/portraits/men/85.jpg",
-    bio: "Stanford MBA, currently in private equity. Deeply aligned with Taft network.",
+    bio: "Stanford MBA in private equity. Choate → Business path.",
     mutuals: "Matched on 4 interests"
   }
 ];
@@ -89,22 +89,29 @@ export default function MyNetwork() {
               />
             );
           })}
+
           {mockNodes.map((node, i) => {
             const angle = (i / mockNodes.length) * 2 * Math.PI;
             const x = 300 + 150 * Math.cos(angle);
             const y = 200 + 150 * Math.sin(angle);
 
             return (
-              <image
+              <foreignObject
                 key={node.id}
-                href={node.img}
-                x={x - 30}
-                y={y - 30}
-                height="60"
-                width="60"
-                className={`node-img ${node.type}`}
-                onClick={() => setSelectedId(node.id)}
-              />
+                x={x - 45}
+                y={y - 45}
+                width="90"
+                height="90"
+                className="node-fo"
+              >
+                <div
+                  className={`node-card ${node.type}`}
+                  onClick={() => setSelectedId(node.id)}
+                >
+                  <img src={node.img} alt={node.name} />
+                  <p>{node.bio}</p>
+                </div>
+              </foreignObject>
             );
           })}
         </svg>
