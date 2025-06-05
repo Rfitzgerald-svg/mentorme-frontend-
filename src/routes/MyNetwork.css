@@ -7,8 +7,64 @@
 .network-left {
   width: 35%;
   background-color: #f4f4f4;
-  padding: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
   box-shadow: inset -1px 0 0 #ddd;
+}
+
+.profile-minis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.mini-profile {
+  border: 3px solid transparent;
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.mini-profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.mini-profile.selected {
+  transform: scale(1.1);
+}
+
+.mini-profile.direct { border-color: #4CAF50; }
+.mini-profile.recommended { border-color: #FFD700; }
+.mini-profile.cross { border-color: #999; }
+.mini-profile.center { border-color: #003366; }
+
+.profile-expanded .profile-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.profile-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.profile-card h2 {
+  margin: 0;
+}
+
+.profile-card .mutuals {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .network-right {
@@ -25,58 +81,37 @@
   height: 100%;
 }
 
-.node {
+.node-img {
   cursor: pointer;
-  fill: #bbb;
-  transition: fill 0.3s ease;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
 }
 
-.node.center {
-  fill: #003366;
-}
-
-.node.direct {
-  fill: #4CAF50;
-}
-
-.node.recommended {
-  fill: #FFD700;
-}
-
-.node.cross {
-  fill: #999;
-  stroke: #333;
-  stroke-dasharray: 4;
-}
-
-.node-label {
+.legend {
   position: absolute;
-  font-size: 0.75rem;
-  text-align: center;
-  width: 80px;
-  font-weight: 500;
-}
-
-.profile-card {
+  bottom: 20px;
+  right: 20px;
   background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.profile-card img {
-  width: 80px;
-  height: 80px;
-  border-radius: 9999px;
-  margin-bottom: 1rem;
+.legend ul {
+  list-style: none;
+  padding-left: 0;
 }
 
-.profile-card h2 {
-  margin: 0;
+.legend .dot {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.placeholder-text {
-  color: #888;
-  font-size: 1rem;
-  padding-top: 3rem;
-}
+.legend .center { background: #003366; }
+.legend .direct { background: #4CAF50; }
+.legend .recommended { background: #FFD700; }
+.legend .cross { background: #999; }
