@@ -1,0 +1,108 @@
+.protips-layout {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.protips-sidebar {
+  width: 230px;
+  background-color: #003366;
+  color: white;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.protips-sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.protips-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.protips-sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.protips-sidebar a:hover,
+.protips-sidebar a.active {
+  background-color: #005099;
+}
+
+.protips-main {
+  flex: 1;
+  padding: 2rem;
+  background: #f4f7fb;
+  overflow-y: auto;
+}
+
+.searchbar {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  background: #000;
+  color: white;
+  outline: none;
+  font-weight: 500;
+}
+
+.searchbar::placeholder {
+  color: #ccc;
+}
+
+.tips-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tip-card {
+  display: flex;
+  background: white;
+  border: 3px solid #002b5c; /* Vibrant dark blue border */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.tip-card img {
+  width: 160px;
+  height: auto;
+  object-fit: cover;
+}
+
+.tip-content {
+  padding: 1rem;
+  flex: 1;
+}
+
+.tip-content h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.tip-content p {
+  margin: 0 0 0.75rem;
+  color: #444;
+}
+
+.tip-tag {
+  font-size: 0.75rem;
+  color: #003366;
+  font-weight: 600;
+  background-color: #e6f0ff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
