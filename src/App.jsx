@@ -10,6 +10,7 @@ import CalendarPage from "./routes/CalendarPage.jsx";
 import Landing from "./routes/Landing.jsx";
 import MyNetwork from "./routes/MyNetwork.jsx";
 import Bot from "./routes/Bot.jsx";
+import ProTips from "./routes/ProTips.jsx";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/network" element={<MyNetwork />} />
         <Route path="/bot" element={<Bot />} />
+        <Route path="/protips" element={<ProTips />} />
         <Route path="/chat/:matchId" element={<ChatRoom />} />
         <Route path="/calendar" element={<CalendarPage />} />
       </Routes>
