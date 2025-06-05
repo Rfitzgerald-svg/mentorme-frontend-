@@ -41,6 +41,20 @@ const mockNodes = [
 
 export default function MyNetwork() {
   const [selectedId, setSelectedId] = useState("1");
+  const [connections, setConnections] = useState({});
+
+  const getStatus = (id) => connections[id] || "Connect";
+
+  const handleConnect = (id) => {
+    const current = connections[id];
+    const next =
+      current === "Connect"
+        ? "Request Sent"
+        : current === "Request Sent"
+        ? "Connected"
+        : "Connect";
+    setConnections({ ...connections, [id]: next });
+  };
 
   return (
     <div className="network-wrapper">
@@ -66,6 +80,12 @@ export default function MyNetwork() {
                 <p><strong>{node.role}</strong></p>
                 <p>{node.bio}</p>
                 <p className="mutuals">{node.mutuals}</p>
+                <button
+                  className={`connect-button ${getStatus(selectedId).replace(" ", "").toLowerCase()}`}
+                  onClick={() => handleConnect(selectedId)}
+                >
+                  {getStatus(selectedId)}
+                </button>
               </div>
             ))}
         </div>
