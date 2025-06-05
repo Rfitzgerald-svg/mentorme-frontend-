@@ -1,0 +1,82 @@
+.network-wrapper {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.network-left {
+  width: 35%;
+  background-color: #f4f4f4;
+  padding: 2rem;
+  box-shadow: inset -1px 0 0 #ddd;
+}
+
+.network-right {
+  width: 65%;
+  position: relative;
+  background: #eef5ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spiderweb {
+  width: 100%;
+  height: 100%;
+}
+
+.node {
+  cursor: pointer;
+  fill: #bbb;
+  transition: fill 0.3s ease;
+}
+
+.node.center {
+  fill: #003366;
+}
+
+.node.direct {
+  fill: #4CAF50;
+}
+
+.node.recommended {
+  fill: #FFD700;
+}
+
+.node.cross {
+  fill: #999;
+  stroke: #333;
+  stroke-dasharray: 4;
+}
+
+.node-label {
+  position: absolute;
+  font-size: 0.75rem;
+  text-align: center;
+  width: 80px;
+  font-weight: 500;
+}
+
+.profile-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.profile-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+}
+
+.profile-card h2 {
+  margin: 0;
+}
+
+.placeholder-text {
+  color: #888;
+  font-size: 1rem;
+  padding-top: 3rem;
+}
