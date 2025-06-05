@@ -7,7 +7,7 @@ const mockNodes = [
     name: "You",
     role: "Student at The Taft School",
     type: "center",
-    img: "https://via.placeholder.com/80",
+    img: "https://randomuser.me/api/portraits/men/11.jpg",
     bio: "Focused on finance and lacrosse. Looking to connect with alumni in business.",
   },
   {
@@ -15,7 +15,7 @@ const mockNodes = [
     name: "Alex Johnson",
     role: "Mentor at JPMorgan",
     type: "direct",
-    img: "https://via.placeholder.com/80",
+    img: "https://randomuser.me/api/portraits/men/32.jpg",
     bio: "VP at JPMorgan. Former lacrosse captain. Love mentoring students into finance.",
     mutuals: "Joaquin and 3 others"
   },
@@ -24,7 +24,7 @@ const mockNodes = [
     name: "Sophie Lee",
     role: "Student at Taft",
     type: "recommended",
-    img: "https://via.placeholder.com/80",
+    img: "https://randomuser.me/api/portraits/women/44.jpg",
     bio: "Also interested in investment banking. Club leader at Taft Women in Business.",
     mutuals: "2 shared activities"
   },
@@ -33,7 +33,7 @@ const mockNodes = [
     name: "Daniel Kim",
     role: "Alum at Choate",
     type: "cross",
-    img: "https://via.placeholder.com/80",
+    img: "https://randomuser.me/api/portraits/men/85.jpg",
     bio: "Stanford MBA, currently in private equity. Deeply aligned with Taft network.",
     mutuals: "Matched on 4 interests"
   }
