@@ -17,15 +17,27 @@ export default function Landing() {
           </Link>
         </div>
         <div className="hero-right">
-          <iframe
-            src="https://lottie.host/embed/2cbcf3d5-0535-41b2-b0fc-487b76e4d14c/hq4KbRzA2T.json"
-            title="MentorMe Animation"
-            width="100%"
-            height="300"
-            frameBorder="0"
-            allowFullScreen
-            style={{ borderRadius: "16px", maxWidth: "400px" }}
-          ></iframe>
+          <img
+            src="/hero.jpg"
+            alt="Student and mentor"
+            style={{
+              borderRadius: "18px",
+              maxWidth: "400px",
+              width: "100%",
+              border: "4px solid #003366",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)"
+            }}
+          />
+          <p style={{
+            fontSize: "1rem",
+            color: "#003366",
+            marginTop: "1.25rem",
+            fontWeight: "500",
+            lineHeight: "1.5",
+            maxWidth: "400px"
+          }}>
+            At MentorMe, we believe every student deserves access to real-world guidance, human connection, and a clear path forward. Our platform makes that possible—one conversation at a time.
+          </p>
         </div>
       </section>
 
