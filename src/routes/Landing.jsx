@@ -17,10 +17,15 @@ export default function Landing() {
           </Link>
         </div>
         <div className="hero-right">
-          <img
-            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG5vbzN5cjY1bHgwZmFrcGZsaGJja2JxY3RpYTUwZmN4MWFtbXU5ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/YTQKy3ES7z1c3fZbwZ/giphy.gif"
-            alt="Mentor graphic"
-          />
+          <iframe
+            src="https://lottie.host/?file=4c227ce1-e15c-4aa5-a74b-dfabcf71a6ce/M1Pg0QaMIp.json"
+            title="Mentor Animation"
+            width="100%"
+            height="300"
+            frameBorder="0"
+            allowFullScreen
+            style={{ borderRadius: "16px", maxWidth: "400px" }}
+          ></iframe>
         </div>
       </section>
 
