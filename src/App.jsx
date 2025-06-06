@@ -12,6 +12,7 @@ import MyNetwork from "./routes/MyNetwork.jsx";
 import Bot from "./routes/Bot.jsx";
 import ProTips from "./routes/ProTips.jsx";
 import AdminPanel from "./routes/AdminPanel.jsx";
+import Layout from "./components/Layout";
 
 export default function App() {
   return (
@@ -22,11 +23,11 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/quiz/mentor" element={<QuizMentor />} />
         <Route path="/quiz/mentee" element={<QuizMentee />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/network" element={<MyNetwork />} />
-        <Route path="/bot" element={<Bot />} />
-        <Route path="/protips" element={<ProTips />} />
-        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+        <Route path="/network" element={<Layout><MyNetwork /></Layout>} />
+        <Route path="/bot" element={<Layout><Bot /></Layout>} />
+        <Route path="/protips" element={<Layout><ProTips /></Layout>} />
+        <Route path="/admin" element={<Layout><AdminPanel /></Layout>} />
         <Route path="/chat/:matchId" element={<ChatRoom />} />
         <Route path="/calendar" element={<CalendarPage />} />
       </Routes>
