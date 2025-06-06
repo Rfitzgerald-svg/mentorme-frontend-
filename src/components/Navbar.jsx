@@ -1,18 +1,24 @@
 import React from "react";
+import "./Navbar.css";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <header className="bg-white shadow sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/dashboard" className="text-xl font-bold text-blue-700">MentorMe</Link>
-        <nav className="space-x-4">
-          <Link to="/register" className="text-sm text-gray-700 hover:text-blue-600">Register</Link>
-          <Link to="/login" className="text-sm text-gray-700 hover:text-blue-600">Login</Link>
-          <Link to="/calendar" className="text-sm text-gray-700 hover:text-blue-600">Calendar</Link>
-          <Link to="/dashboard" className="text-sm text-gray-700 hover:text-blue-600">Dashboard</Link>
-        </nav>
+    <header className="navbar">
+      <div className="nav-left">
+        <span className="logo">Mm</span>
+        <h1 className="nav-title">MentorMe</h1>
       </div>
+
+      <nav className="nav-links">
+        <a href="#how">How It Works</a>
+        <a href="#customers">Customers</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#resources">Resources</a>
+        <a href="#build">Build Your Program</a>
+        <Link to="/login">Log In</Link>
+        <Link to="/register" className="demo-btn">👉 Book a Demo</Link>
+      </nav>
     </header>
   );
 }
