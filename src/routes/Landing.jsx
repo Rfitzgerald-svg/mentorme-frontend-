@@ -6,41 +6,30 @@ export default function Landing() {
   return (
     <div className="landing-scroll">
       {/* HERO SECTION */}
-      <section className="hero">
+      <section className="hero mentorloop-style">
         <div className="hero-left">
-          <h1>Mentorship that lasts a lifetime.</h1>
+          <h1>Mentorship that transforms futures.</h1>
           <p>
-            Built for students. Designed for schools. Powered by community.
+            Empowering students with access to guidance, real relationships, and a clear path forward.
           </p>
           <Link to="/register">
-            <button className="cta-button">Get Started</button>
+            <button className="cta-button">Join the Movement</button>
           </Link>
         </div>
         <div className="hero-right">
           <img
             src="/hero.jpg"
-            alt="Student and mentor"
-            style={{
-              borderRadius: "18px",
-              maxWidth: "420px",
-              width: "100%",
-              border: "4px solid #003366",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
-              marginBottom: "1.25rem"
-            }}
+            alt="Mentorship at work"
+            className="hero-image"
           />
-          <p style={{
-            fontSize: "1rem",
-            color: "#003366",
-            fontWeight: "500",
-            lineHeight: "1.6",
-            textAlign: "left",
-            maxWidth: "420px"
-          }}>
-            At MentorMe, we believe every student deserves access to real-world guidance, human connection, and a clear path forward. Our platform makes that possible—one conversation at a time.
+          <p className="hero-caption">
+            At MentorMe, we believe that when you connect the right people, anything is possible.
           </p>
         </div>
       </section>
+
+      {/* SCROLL CUE */}
+      <div className="scroll-cue">⬇️ Scroll to see how it works</div>
 
       {/* RESEARCH STATS */}
       <section className="stats">
@@ -48,21 +37,15 @@ export default function Landing() {
         <div className="stat-cards">
           <div className="stat-card">
             <h3>89%</h3>
-            <p>
-              of students with mentors feel more prepared for life after school.
-            </p>
+            <p>of students with mentors feel more prepared for life after school.</p>
           </div>
           <div className="stat-card">
             <h3>3X</h3>
-            <p>
-              more likely to succeed when supported by a peer or alumni mentor.
-            </p>
+            <p>more likely to succeed when supported by a peer or alumni mentor.</p>
           </div>
           <div className="stat-card">
             <h3>75%</h3>
-            <p>
-              of mentees report increased confidence and clarity in their path.
-            </p>
+            <p>of mentees report increased confidence and clarity in their path.</p>
           </div>
         </div>
       </section>
