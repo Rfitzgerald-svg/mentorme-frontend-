@@ -1,45 +1,83 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Landing.css";
-import bgImage from "../assets/background.jpg";
+import { Link } from "react-router-dom";
 
 export default function Landing() {
   return (
-    <div
-      className="landing-container"
-      style={{
-        backgroundImage: `linear-gradient(to right, #0F2027, #203A43, #2C5364), url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundBlendMode: "overlay"
-      }}
-    >
-      <header className="landing-header">
-        <div className="logo">
-          <span className="logo-bold">M</span>
-          <span className="logo-light">m</span>
-        </div>
-        <nav className="nav-buttons">
-          <Link to="/login">
+    <div className="landing-scroll">
+      {/* HERO SECTION */}
+      <section className="hero">
+        <div className="hero-left">
+          <h1>Mentorship that lasts a lifetime.</h1>
+          <p>
+            Built for students. Designed for schools. Powered by community.
+          </p>
+          <Link to="/register">
             <button className="cta-button">Get Started</button>
           </Link>
-        </nav>
-      </header>
-
-      <section className="hero">
-        <div className="hero-content">
-          <h1>MentorMe – Leading the next generation</h1>
-          <p>A mentorship platform built to connect students, alumni, and opportunity in one intuitive hub.</p>
-          <Link to="/login">
-            <button className="cta-button">Sign in with Google</button>
-          </Link>
+        </div>
+        <div className="hero-right">
+          <img
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG5vbzN5cjY1bHgwZmFrcGZsaGJja2JxY3RpYTUwZmN4MWFtbXU5ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/YTQKy3ES7z1c3fZbwZ/giphy.gif"
+            alt="Mentor graphic"
+          />
         </div>
       </section>
 
-      <section className="info-section">
-        <h2>How It Works</h2>
-        <p>Take a quiz, match with mentors, learn through guidance, and grow through experience.</p>
-        <h2>Who It's For</h2>
-        <p>Students. Alumni. Schools. Communities. You.</p>
+      {/* RESEARCH STATS */}
+      <section className="stats">
+        <h2>Why Mentorship Works</h2>
+        <div className="stat-cards">
+          <div className="stat-card">
+            <h3>89%</h3>
+            <p>
+              of students with mentors feel more prepared for life after school.
+            </p>
+          </div>
+          <div className="stat-card">
+            <h3>3X</h3>
+            <p>
+              more likely to succeed when supported by a peer or alumni mentor.
+            </p>
+          </div>
+          <div className="stat-card">
+            <h3>75%</h3>
+            <p>
+              of mentees report increased confidence and clarity in their path.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURE GRID */}
+      <section className="features">
+        <h2>How MentorMe Helps</h2>
+        <div className="feature-grid">
+          <div className="feature">
+            <h4>🔗 AI-Powered Matching</h4>
+            <p>Connect students with mentors based on real shared interests.</p>
+          </div>
+          <div className="feature">
+            <h4>💬 Guided ChatBot</h4>
+            <p>Help students ask better questions and explore careers.</p>
+          </div>
+          <div className="feature">
+            <h4>📘 Pro Tips</h4>
+            <p>Real-world advice from people who've done it before.</p>
+          </div>
+          <div className="feature">
+            <h4>🏫 School Dashboards</h4>
+            <p>Track engagement and growth in one beautiful panel.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* QUOTE SECTION */}
+      <section className="testimonial">
+        <blockquote>
+          "MentorMe gave me the roadmap I never had. I feel confident walking into any room now."
+        </blockquote>
+        <cite>— Jordan A., Student at The Taft School</cite>
       </section>
     </div>
   );
