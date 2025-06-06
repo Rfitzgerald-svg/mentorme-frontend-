@@ -22,19 +22,20 @@ export default function Landing() {
             alt="Student and mentor"
             style={{
               borderRadius: "18px",
-              maxWidth: "400px",
+              maxWidth: "420px",
               width: "100%",
               border: "4px solid #003366",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)"
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+              marginBottom: "1.25rem"
             }}
           />
           <p style={{
             fontSize: "1rem",
             color: "#003366",
-            marginTop: "1.25rem",
             fontWeight: "500",
-            lineHeight: "1.5",
-            maxWidth: "400px"
+            lineHeight: "1.6",
+            textAlign: "left",
+            maxWidth: "420px"
           }}>
             At MentorMe, we believe every student deserves access to real-world guidance, human connection, and a clear path forward. Our platform makes that possible—one conversation at a time.
           </p>
