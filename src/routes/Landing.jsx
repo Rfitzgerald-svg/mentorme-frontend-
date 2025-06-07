@@ -8,7 +8,7 @@ export default function Landing() {
     <>
       <Navbar />
       <div className="landing-scroll" style={{ paddingTop: "80px" }}>
-        {/* HERO SECTION */}
+        {/* HERO */}
         <section className="hero mentorloop-hero">
           <div className="hero-left">
             <h1 className="hero-title">The new way to unlock student potential</h1>
@@ -19,26 +19,33 @@ export default function Landing() {
             <div className="cta-banner">Join the Movement Today</div>
           </div>
           <div className="hero-right">
-            <img
-              src="/hero.jpg"
-              alt="Mentorship in action"
-              className="hero-image"
-            />
+            <img src="/hero.jpg" alt="Mentorship" className="hero-image" />
           </div>
         </section>
 
-        {/* ABOUT */}
+        {/* HOW IT WORKS */}
+        <section className="how-it-works" id="how">
+          <h2>How It Works</h2>
+          <ul>
+            <li>📥 Students take a short interest quiz</li>
+            <li>🤝 AI matches them to mentors from your alumni network</li>
+            <li>💬 Guided questions + tips help start real conversations</li>
+            <li>📈 Schools track engagement, outcomes, and growth</li>
+          </ul>
+        </section>
+
+        {/* FOUNDERS */}
         <section className="about" id="about">
           <h2>Meet the Founders</h2>
           <div className="founder-cards">
             <div className="founder-card">
-              <img src="/russell.jpg" alt="Russell Fitzgerald" />
+              <img src="/russell.jpg" alt="Russell Fitzgerald" className="founder-img" />
               <h3>Russell Fitzgerald</h3>
               <p>Philadelphia, Pennsylvania</p>
               <p>Princeton University</p>
             </div>
             <div className="founder-card">
-              <img src="/jett.jpg" alt="Jett Honig" />
+              <img src="/jett.jpg" alt="Jett Honig" className="founder-img" />
               <h3>Jett Honig</h3>
               <p>Boca Raton, Florida</p>
               <p>Southern Methodist University</p>
@@ -46,7 +53,7 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* PRICING */}
+        {/* PRICING AT BOTTOM */}
         <section className="pricing" id="pricing">
           <h2>Pricing</h2>
           <div className="pricing-tiers">
