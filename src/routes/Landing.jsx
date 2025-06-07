@@ -29,6 +29,11 @@ export default function Landing() {
             />
           </div>
         </section>
+
+        {/* SCROLL CUE */}
+        <div className="scroll-cue">⬇️ Scroll to see how it works</div>
+
+        {/* Add your other sections below this, unchanged */}
       </div>
     </>
   );
