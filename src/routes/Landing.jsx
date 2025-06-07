@@ -1,7 +1,6 @@
 import React from "react";
 import "./Landing.css";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
 
 export default function Landing() {
   return (
@@ -19,7 +18,11 @@ export default function Landing() {
             <div className="cta-banner">Join the Movement Today</div>
           </div>
           <div className="hero-right">
-            <img src="/hero.jpg" alt="Mentorship" className="hero-image" />
+            <img
+              src="/hero.jpg"
+              alt="Mentorship in action"
+              className="hero-image"
+            />
           </div>
         </section>
 
@@ -34,7 +37,7 @@ export default function Landing() {
           </ul>
         </section>
 
-        {/* FOUNDERS */}
+        {/* MEET THE FOUNDERS */}
         <section className="about" id="about">
           <h2>Meet the Founders</h2>
           <div className="founder-cards">
@@ -53,7 +56,7 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* PRICING AT BOTTOM */}
+        {/* PRICING */}
         <section className="pricing" id="pricing">
           <h2>Pricing</h2>
           <div className="pricing-tiers">
