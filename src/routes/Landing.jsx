@@ -11,15 +11,12 @@ export default function Landing() {
         {/* HERO SECTION */}
         <section className="hero mentorloop-hero">
           <div className="hero-left">
-            <h1 className="hero-title">
-              The new way to unlock student potential
-            </h1>
+            <h1 className="hero-title">The new way to unlock student potential</h1>
             <p className="hero-subtext">
-              MentorMe connects students to alumni and mentors based on real experience—not guesswork. One conversation can change a life.
+              MentorMe connects students to alumni and mentors based on real experience—not guesswork.
+              One conversation can change a life.
             </p>
-            <Link to="/register">
-              <button className="cta-button">🚀 Book a Demo</button>
-            </Link>
+            <div className="cta-banner">Join the Movement Today</div>
           </div>
           <div className="hero-right">
             <img
@@ -30,21 +27,23 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* HOW IT WORKS */}
-        <section className="how-it-works" id="how">
-          <h2>How It Works</h2>
-          <ul>
-            <li>📥 Students take a short interest quiz</li>
-            <li>🤝 AI matches them to mentors from your alumni network</li>
-            <li>💬 Guided questions + tips help start real conversations</li>
-            <li>📈 Schools track engagement, outcomes, and growth</li>
-          </ul>
-        </section>
-
         {/* ABOUT */}
         <section className="about" id="about">
           <h2>Meet the Founders</h2>
-          <p><strong>Russell Fitzgerald</strong> and <strong>Jett Honig</strong> built MentorMe to empower students with access to meaningful relationships that fuel real-world growth and opportunity.</p>
+          <div className="founder-cards">
+            <div className="founder-card">
+              <img src="/russell.jpg" alt="Russell Fitzgerald" />
+              <h3>Russell Fitzgerald</h3>
+              <p>Philadelphia, Pennsylvania</p>
+              <p>Princeton University</p>
+            </div>
+            <div className="founder-card">
+              <img src="/jett.jpg" alt="Jett Honig" />
+              <h3>Jett Honig</h3>
+              <p>Boca Raton, Florida</p>
+              <p>Southern Methodist University</p>
+            </div>
+          </div>
         </section>
 
         {/* PRICING */}
