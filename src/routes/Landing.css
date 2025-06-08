@@ -1,3 +1,11 @@
+.landing-scroll {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fb;
+  color: #222;
+  scroll-behavior: smooth;
+  padding-bottom: 4rem;
+}
+
 .mentorloop-hero {
   display: flex;
   justify-content: space-between;
@@ -95,6 +103,70 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
+.pricing {
+  padding: 4rem 2rem;
+  background: white;
+  text-align: center;
+}
+
+.pricing h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #003366;
+}
+
+.pricing p {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 1rem;
+}
+
+.pricing-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.tier {
+  background: #f0f4f9;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tier h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.tier p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tier ul {
+  padding-left: 1.2rem;
+  margin-top: 1rem;
+}
+
+.tier ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.pricing-footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
 @media (max-width: 1024px) {
   .mentorloop-hero,
   .section {
