@@ -2,8 +2,75 @@ import React from "react";
 
 export default function RegisterEmail() {
   return (
-    <div style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <h1 style={{ color: "#003366" }}>RegisterEmail is working ✅</h1>
+    <div style={{
+      display: "flex",
+      height: "100vh",
+      fontFamily: "Inter, sans-serif"
+    }}>
+      <div style={{
+        flex: 1,
+        backgroundColor: "#003366",
+        color: "white",
+        padding: "4rem",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
+      }}>
+        <h1 style={{ fontSize: "2.5rem", lineHeight: 1.2 }}>Sign up<br />and come on in</h1>
+        <div style={{
+          width: "100%",
+          height: "300px",
+          backgroundColor: "#005288",
+          borderRadius: "10px",
+          marginTop: "2rem"
+        }}></div>
+      </div>
+
+      <div style={{
+        flex: 1,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "white"
+      }}>
+        <form style={{
+          width: "100%",
+          maxWidth: "400px",
+          padding: "2rem",
+          display: "flex",
+          flexDirection: "column"
+        }}>
+          <p style={{ fontSize: "1rem", color: "#333", marginBottom: "1rem" }}>
+            Get access to mentorship that actually matters.
+          </p>
+          <input type="email" placeholder="Email" style={inputStyle} />
+          <input type="password" placeholder="Password" style={inputStyle} />
+          <label style={{ fontSize: "0.85rem", marginBottom: "1rem" }}>
+            <input type="checkbox" style={{ marginRight: "0.5rem" }} />
+            I agree to MentorMe’s <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+          </label>
+          <button type="submit" style={buttonStyle}>Create my free account</button>
+        </form>
+      </div>
     </div>
   );
 }
+
+const inputStyle = {
+  fontSize: "1rem",
+  padding: "0.9rem",
+  marginBottom: "1rem",
+  borderRadius: "8px",
+  border: "1px solid #ccc"
+};
+
+const buttonStyle = {
+  padding: "0.9rem",
+  fontWeight: "bold",
+  backgroundColor: "#003366",
+  color: "white",
+  border: "none",
+  borderRadius: "8px",
+  cursor: "pointer",
+  transition: "background 0.3s"
+};
