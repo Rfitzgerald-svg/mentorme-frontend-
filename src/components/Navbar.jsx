@@ -1,24 +1,31 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const navigate = useNavigate();
+
+  const scrollTo = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <header className="navbar">
-      <div className="nav-left">
-        <span className="logo">Mm</span>
+    <nav className="navbar">
+      <div className="nav-left" onClick={() => navigate("/")}>
+        <div className="logo">Mm</div>
         <span className="nav-title">MentorMe</span>
       </div>
-      <nav className="nav-right">
-        <button onClick={() => scrollToSection("how")}>How It Works</button>
-        <button onClick={() => scrollToSection("about")}>About Us</button>
-        <button onClick={() => scrollToSection("pricing")}>Pricing</button>
-        <a href="/register" className="cta-demo">👉 Book a Demo</a>
-      </nav>
-    </header>
+      <div className="nav-right">
+        <button onClick={() => scrollTo("how-it-works")}>How It Works</button>
+        <button onClick={() => scrollTo("about-us")}>About Us</button>
+        <button onClick={() => scrollTo("pricing")}>Pricing</button>
+        <button className="cta-demo" onClick={() => navigate("/demo")}>
+          👉 Book a Demo
+        </button>
+      </div>
+    </nav>
   );
 }
