@@ -1,0 +1,84 @@
+.email-register {
+  display: flex;
+  height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+
+.email-register-left {
+  flex: 1;
+  background-color: #003366;
+  color: white;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.email-register-left h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.email-register-left p {
+  font-size: 1.125rem;
+}
+
+.email-register-right {
+  flex: 1;
+  background-color: white;
+  padding: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.email-form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.email-form h2 {
+  color: #003366;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.email-form input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.email-form button {
+  background-color: #003366;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.email-form button:hover {
+  background-color: #005299;
+}
+
+.login-redirect {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.login-redirect a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.9rem;
+}
