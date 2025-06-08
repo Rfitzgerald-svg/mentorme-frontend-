@@ -1,61 +1,66 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../supabase";
+import { signUpWithEmail } from "../services/AuthService";
 import "./RegisterEmail.css";
 
 export default function RegisterEmail() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [agree, setAgree] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    if (!agree) {
+      setErrorMsg("You must agree to the Terms of Service.");
+      return;
+    }
 
-    const { email, password } = formData;
-    const { error } = await supabase.auth.signUp({ email, password });
-
+    const { error } = await signUpWithEmail(email, password);
     if (error) {
-      setError(error.message);
+      setErrorMsg(error.message);
     } else {
-      navigate("/quiz/mentee"); // or logic to redirect based on role later
+      navigate("/dashboard");
     }
   };
 
   return (
-    <div className="email-register">
-      <div className="email-register-left">
-        <h1>Welcome to MentorMe</h1>
-        <p>Your journey starts here. Real guidance. Real growth.</p>
+    <div className="register-email-container">
+      <div className="register-email-left">
+        <h1>Sign up<br />and come on in</h1>
+        <div className="image-placeholder"></div>
       </div>
-      <div className="email-register-right">
-        <form className="email-form" onSubmit={handleSubmit}>
-          <h2>Create your MentorMe account</h2>
-          {error && <p className="error-msg">{error}</p>}
+
+      <div className="register-email-right">
+        <form className="register-email-form" onSubmit={handleSubmit}>
+          <p className="form-subtext">Get access to mentorship that actually matters.</p>
+          {errorMsg && <p className="error-msg">{errorMsg}</p>}
           <input
             type="email"
-            name="email"
             placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <input
             type="password"
-            name="password"
             placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">Create Account</button>
-          <p className="login-redirect">
-            Already have an account? <a href="/login">Log in</a>
-          </p>
+          <label className="checkbox-container">
+            <input
+              type="checkbox"
+              checked={agree}
+              onChange={() => setAgree(!agree)}
+            />
+            <span>
+              I agree to MentorMe’s <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+            </span>
+          </label>
+          <button type="submit">Create my free account</button>
         </form>
       </div>
     </div>
