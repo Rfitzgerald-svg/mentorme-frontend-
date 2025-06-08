@@ -1,70 +1,16 @@
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  background-color: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0.5rem;
-  z-index: 1000;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  background-color: #4CAFFF;
+.demo-button {
+  background-color: #003366;
   color: white;
-  font-weight: bold;
-  font-size: 1.4rem;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 0.5rem;
-}
-
-.nav-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #003366;
-}
-
-.nav-right {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-  font-size: 1rem;
-  margin-left: auto;
-}
-
-.nav-right button {
-  background: none;
+  padding: 0.6rem 1.2rem;
   border: none;
-  font-family: inherit;
-  font-size: 1rem;
-  color: #003366;
-  cursor: pointer;
-}
-
-.nav-right button:hover {
-  color: #0077cc;
-}
-
-.cta-demo {
-  background-color: #ff6b6b;
-  color: white !important;
-  padding: 0.5rem 1.2rem;
   border-radius: 8px;
   font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.demo-button:hover {
+  background-color: #004080;
 }
