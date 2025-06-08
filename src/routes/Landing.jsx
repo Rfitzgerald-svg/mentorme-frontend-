@@ -10,83 +10,82 @@ export default function Landing() {
         {/* HERO */}
         <section className="hero mentorloop-hero">
           <div className="hero-left">
-            <h1 className="hero-title">🟦 Join the Movement Today</h1>
+            <h1 className="hero-title">Your Journey Starts Today</h1>
             <p className="hero-subtext">
-              MentorMe isn’t just a platform. It’s a movement. <br />
-              We connect students to mentors who get it — because they’ve lived it. Real stories. Real guidance. Real growth. <br />
-              One meaningful match can shape a life. We make sure it happens.
+              MentorMe isn’t just a platform. It’s a movement. We connect students to mentors who get it — because they’ve lived it. Real stories. Real guidance. Real growth. One meaningful match can shape a life. We make sure it happens.
             </p>
             <a href="/register">
-              <div className="cta-banner">Join the Movement Today</div>
+              <button className="cta-button">Join the Movement</button>
             </a>
           </div>
           <div className="hero-right">
-            <img
-              src="/hero.jpg"
-              alt="Mentorship in action"
-              className="hero-image"
-            />
+            <img src="/hero.jpg" alt="Mentorship in action" className="hero-image" />
           </div>
         </section>
 
         {/* HOW IT WORKS */}
-        <section className="how-it-works" id="how">
-          <h2>🚀 How MentorMe Works</h2>
-          <p>
-            MentorMe simplifies the complex — matching students with mentors who truly align. Here's how:
-          </p>
-          <ul>
-            <li><strong>Take the Quiz</strong><br />
-              Students and mentors each complete a lightning-fast onboarding quiz that captures their passions, goals, and shared experiences — from sports and clubs to career interests and alma maters.
-            </li>
-            <li><strong>AI-Powered Matching</strong><br />
-              Our proprietary AI engine finds meaningful connections, not just overlaps. We match based on shared values, not just keywords — because mentorship should feel natural, not forced.
-            </li>
-            <li><strong>Smart Onboarding & Crash Courses</strong><br />
-              Students get instant access to pro tips and a crash course on how to build a lasting mentorship — so every connection starts with confidence.
-            </li>
-            <li><strong>Chat. Connect. Grow.</strong><br />
-              From guided chats to career insights, students can engage with mentors, track progress, and unlock a future shaped by experience — all in a secure, school-backed platform.
-            </li>
-          </ul>
-        </section>
-
-        {/* ABOUT US */}
-        <section className="about" id="about">
-          <h2>💡 About Us</h2>
-          <p>
-            MentorMe began with a simple question: What if every student had someone to show them the way?
-          </p>
-          <p>
-            We’re not a Silicon Valley behemoth — we’re two high school students, Russell Fitzgerald and Jett Honig, who saw firsthand how mentorship could transform lives but noticed how broken, outdated, and impersonal most systems were. So we built something better.
-          </p>
-          <p>
-            MentorMe is the next-generation mentorship platform that bridges students with real-world guidance — powered by AI, backed by schools, and built with heart. Our mission is to democratize access to wisdom, connection, and opportunity by creating a space where students and mentors actually want to engage.
-          </p>
-          <p>
-            Whether you're a student figuring out your path, a mentor hoping to give back, or a school looking to empower your community — MentorMe delivers an experience that’s intuitive, secure, and built for meaningful growth.
-          </p>
-          <p>
-            We believe mentorship isn’t a feature — it’s a foundation. And we’re here to rebuild it from the ground up.
-          </p>
-
-          <div className="founder-cards">
-            <div className="founder-card">
-              <img src="/russell.jpg" alt="Russell Fitzgerald" className="founder-img" />
-              <h3>Russell Fitzgerald</h3>
-              <p>Philadelphia, Pennsylvania</p>
-              <p>Princeton University</p>
-            </div>
-            <div className="founder-card">
-              <img src="/jett.jpg" alt="Jett Honig" className="founder-img" />
-              <h3>Jett Honig</h3>
-              <p>Boca Raton, Florida</p>
-              <p>Southern Methodist University</p>
-            </div>
+        <section className="section-block alt-block" id="how">
+          <div className="text">
+            <h2>Take the Quiz</h2>
+            <p>Students and mentors each complete a lightning-fast onboarding quiz that captures their passions, goals, and shared experiences — from sports and clubs to career interests and alma maters.</p>
+          </div>
+          <div className="image">
+            <img src="/quiz.png" alt="Take the Quiz" />
           </div>
         </section>
 
-        {/* PRICING */}
+        <section className="section-block" id="match">
+          <div className="image">
+            <img src="/ai-match.png" alt="AI Matching" />
+          </div>
+          <div className="text">
+            <h2>AI-Powered Matching</h2>
+            <p>Our proprietary AI engine finds meaningful connections, not just overlaps. We match based on shared values — because mentorship should feel natural, not forced.</p>
+          </div>
+        </section>
+
+        <section className="section-block alt-block" id="onboard">
+          <div className="text">
+            <h2>Smart Onboarding & Crash Courses</h2>
+            <p>Students get instant access to pro tips and a crash course on how to build a lasting mentorship — so every connection starts with confidence.</p>
+          </div>
+          <div className="image">
+            <img src="/onboarding.png" alt="Crash Courses" />
+          </div>
+        </section>
+
+        <section className="section-block" id="chat">
+          <div className="image">
+            <img src="/chat.png" alt="Chat and Connect" />
+          </div>
+          <div className="text">
+            <h2>Chat. Connect. Grow.</h2>
+            <p>From guided chats to career insights, students can engage with mentors, track progress, and unlock a future shaped by experience — all in a secure, school-backed platform.</p>
+          </div>
+        </section>
+
+        {/* ABOUT US */}
+        <section className="section-block alt-block" id="about">
+          <div className="text">
+            <h2>Our Story</h2>
+            <p>We’re not a Silicon Valley behemoth — we’re two high school students, Russell Fitzgerald and Jett Honig, who saw firsthand how mentorship could transform lives but noticed how broken, outdated, and impersonal most systems were. So we built something better.</p>
+          </div>
+          <div className="image">
+            <img src="/founders.png" alt="Russell and Jett" />
+          </div>
+        </section>
+
+        <section className="section-block" id="mission">
+          <div className="image">
+            <img src="/mission.png" alt="MentorMe Mission" />
+          </div>
+          <div className="text">
+            <h2>Our Mission</h2>
+            <p>MentorMe is the next-generation mentorship platform that bridges students with real-world guidance — powered by AI, backed by schools, and built with heart. Our mission is to democratize access to wisdom, connection, and opportunity.</p>
+          </div>
+        </section>
+
+        {/* PRICING (UNCHANGED) */}
         <section className="pricing" id="pricing">
           <h2>💸 Simple, Scalable Pricing</h2>
           <p>Powerful mentorship, priced for real impact. From small schools to entire districts, MentorMe grows with you.</p>
