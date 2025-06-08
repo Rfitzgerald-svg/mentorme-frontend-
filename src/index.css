@@ -2,20 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* GLOBAL STYLES */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  background-color: #f3f4f6;
-  color: #1f2937;
+  @apply bg-gray-100 text-gray-800 antialiased;
 }
 
 h1, h2, h3 {
-  font-weight: 700;
+  @apply font-extrabold text-gray-900;
 }
 
 a {
-  @apply text-blue-600 hover:underline;
+  @apply text-blue-600 hover:underline transition duration-150 ease-in-out;
 }
 
 button {
-  @apply rounded-md shadow-sm transition hover:shadow-md;
+  @apply rounded-md shadow-sm transition hover:shadow-md focus:outline-none font-medium;
+}
+
+img {
+  @apply block max-w-full object-cover;
+}
+
+ul {
+  @apply list-none p-0;
+}
+
+input, textarea, select {
+  @apply rounded-md border border-gray-300 p-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500;
 }
