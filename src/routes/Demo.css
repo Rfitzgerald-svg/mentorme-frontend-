@@ -1,0 +1,113 @@
+.demo-page {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.demo-left {
+  flex: 1;
+  background: #f9fbff;
+  padding: 5rem 4rem;
+  color: #003366;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.demo-left h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.demo-left p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  max-width: 500px;
+}
+
+.trusted-by {
+  margin-top: 3rem;
+}
+
+.trusted-by h4 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.logo-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.fake-logo {
+  background: #d8e7f7;
+  color: #003366;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+}
+
+.demo-right {
+  flex: 1;
+  padding: 5rem 4rem;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.demo-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  color: #003366;
+}
+
+.demo-form label {
+  display: block;
+  font-size: 0.95rem;
+  margin: 1rem 0 0.25rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.demo-form input,
+.demo-form textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.demo-form button {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: #003366;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  color: #777;
+}
+
+.disclaimer a {
+  color: #003366;
+  text-decoration: underline;
+}
