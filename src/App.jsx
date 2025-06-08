@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./routes/Register.jsx";
 import Login from "./routes/Login.jsx";
 import QuizMentor from "./routes/QuizMentor.jsx";
