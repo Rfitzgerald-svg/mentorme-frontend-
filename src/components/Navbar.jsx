@@ -14,15 +14,15 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="nav-left" onClick={() => navigate("/")}>
-        <div className="logo">Mm</div>
-        <span className="nav-title">MentorMe</span>
+      <div className="navbar-left" onClick={() => navigate("/")}>
+        <img src="/logo.svg" alt="MentorMe Logo" className="navbar-logo" />
+        <span className="navbar-title">MentorMe</span>
       </div>
-      <div className="nav-right">
+      <div className="navbar-right">
         <button onClick={() => scrollTo("how-it-works")}>How It Works</button>
         <button onClick={() => scrollTo("about-us")}>About Us</button>
         <button onClick={() => scrollTo("pricing")}>Pricing</button>
-        <button className="demo-button" onClick={() => navigate("/demo")}>
+        <button className="book-demo-btn" onClick={() => navigate("/demo")}>
           Book a Demo
         </button>
       </div>
