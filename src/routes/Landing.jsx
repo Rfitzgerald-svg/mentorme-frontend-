@@ -22,7 +22,7 @@ export default function Landing() {
         </section>
 
         {/* HOW IT WORKS */}
-        <section className="section alt" id="how">
+        <section className="section alt" id="how-it-works">
           <div className="text">
             <h2>Take the Quiz</h2>
             <p>Students and mentors each complete a lightning-fast onboarding quiz that captures their passions, goals, and shared experiences — from sports and clubs to career interests and alma maters.</p>
@@ -63,7 +63,7 @@ export default function Landing() {
         </section>
 
         {/* ABOUT US */}
-        <section className="section alt" id="about">
+        <section className="section alt" id="about-us">
           <div className="text">
             <h2>Our Story</h2>
             <p>We’re two high school students, Russell Fitzgerald and Jett Honig, who saw how mentorship changed lives—but noticed how outdated most systems were. So we built something better.</p>
