@@ -1,10 +1,10 @@
-.email-register {
+.register-email-container {
   display: flex;
   height: 100vh;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
-.email-register-left {
+.register-email-left {
   flex: 1;
   background-color: #003366;
   color: white;
@@ -14,71 +14,74 @@
   justify-content: center;
 }
 
-.email-register-left h1 {
+.register-email-left h1 {
   font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 300px;
+  background-color: #005288;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.register-email-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.register-email-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-email-form input {
+  font-size: 1rem;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.register-email-form button {
+  padding: 0.9rem;
+  font-weight: bold;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.register-email-form button:hover {
+  background-color: #005288;
+}
+
+.form-subtext {
+  font-size: 1rem;
+  color: #333;
   margin-bottom: 1rem;
 }
 
-.email-register-left p {
-  font-size: 1.125rem;
+.checkbox-container {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
 }
 
-.email-register-right {
-  flex: 1;
-  background-color: white;
-  padding: 4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.email-form {
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.email-form h2 {
-  color: #003366;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.email-form input {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.email-form button {
-  background-color: #003366;
-  color: white;
-  font-weight: 600;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.email-form button:hover {
-  background-color: #005299;
-}
-
-.login-redirect {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.login-redirect a {
-  color: #003366;
-  text-decoration: none;
-  font-weight: 500;
+.checkbox-container input {
+  margin-right: 0.5rem;
 }
 
 .error-msg {
   color: red;
-  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
