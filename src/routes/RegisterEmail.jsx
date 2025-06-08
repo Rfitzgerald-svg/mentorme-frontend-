@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { signUpWithEmail } from "../services/AuthService";
 
 export default function RegisterEmail() {
@@ -7,20 +6,29 @@ export default function RegisterEmail() {
   const [password, setPassword] = useState("");
   const [agree, setAgree] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const navigate = useNavigate();
+  const [successMsg, setSuccessMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
+    setSuccessMsg("");
+
     if (!agree) {
       setErrorMsg("Please agree to the Terms of Service.");
       return;
     }
 
-    const { error } = await signUpWithEmail(email, password);
-    if (error) {
-      setErrorMsg(error.message);
-    } else {
-      navigate("/dashboard");
+    try {
+      const { error, data } = await signUpWithEmail(email, password);
+      if (error) {
+        setErrorMsg(error.message);
+      } else {
+        console.log("Supabase response:", data);
+        setSuccessMsg("Account created successfully!");
+      }
+    } catch (err) {
+      console.error("Signup failed:", err);
+      setErrorMsg("Something went wrong.");
     }
   };
 
@@ -67,6 +75,7 @@ export default function RegisterEmail() {
             Get access to mentorship that actually matters.
           </p>
           {errorMsg && <p style={{ color: "red", marginBottom: "1rem" }}>{errorMsg}</p>}
+          {successMsg && <p style={{ color: "green", marginBottom: "1rem" }}>{successMsg}</p>}
           <input
             type="email"
             placeholder="Email"
