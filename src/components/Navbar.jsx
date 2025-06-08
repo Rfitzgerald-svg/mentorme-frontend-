@@ -22,8 +22,8 @@ export default function Navbar() {
         <button onClick={() => scrollTo("how-it-works")}>How It Works</button>
         <button onClick={() => scrollTo("about-us")}>About Us</button>
         <button onClick={() => scrollTo("pricing")}>Pricing</button>
-        <button className="cta-demo" onClick={() => navigate("/demo")}>
-          👉 Book a Demo
+        <button className="demo-button" onClick={() => navigate("/demo")}>
+          Book a Demo
         </button>
       </div>
     </nav>
