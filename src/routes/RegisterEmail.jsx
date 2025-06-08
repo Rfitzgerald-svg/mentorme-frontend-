@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signUpWithEmail } from "../services/AuthService";
 
 export default function RegisterEmail() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [agree, setAgree] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!agree) {
+      setErrorMsg("Please agree to the Terms of Service.");
+      return;
+    }
+
+    const { error } = await signUpWithEmail(email, password);
+    if (error) {
+      setErrorMsg(error.message);
+    } else {
+      navigate("/dashboard");
+    }
+  };
+
   return (
     <div style={{
       display: "flex",
@@ -33,7 +56,7 @@ export default function RegisterEmail() {
         justifyContent: "center",
         backgroundColor: "white"
       }}>
-        <form style={{
+        <form onSubmit={handleSubmit} style={{
           width: "100%",
           maxWidth: "400px",
           padding: "2rem",
@@ -43,10 +66,30 @@ export default function RegisterEmail() {
           <p style={{ fontSize: "1rem", color: "#333", marginBottom: "1rem" }}>
             Get access to mentorship that actually matters.
           </p>
-          <input type="email" placeholder="Email" style={inputStyle} />
-          <input type="password" placeholder="Password" style={inputStyle} />
+          {errorMsg && <p style={{ color: "red", marginBottom: "1rem" }}>{errorMsg}</p>}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={inputStyle}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={inputStyle}
+          />
           <label style={{ fontSize: "0.85rem", marginBottom: "1rem" }}>
-            <input type="checkbox" style={{ marginRight: "0.5rem" }} />
+            <input
+              type="checkbox"
+              checked={agree}
+              onChange={() => setAgree(!agree)}
+              style={{ marginRight: "0.5rem" }}
+            />
             I agree to MentorMe’s <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
           </label>
           <button type="submit" style={buttonStyle}>Create my free account</button>
