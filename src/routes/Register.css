@@ -7,7 +7,7 @@
 
 .register-left {
   flex: 1;
-  background-color: #2e203f;
+  background-color: #003366;
   color: white;
   padding: 5rem 3rem;
   display: flex;
@@ -26,7 +26,7 @@
   width: 100%;
   max-width: 350px;
   height: 250px;
-  background-color: #4c3a66;
+  background-color: #005288;
   border-radius: 12px;
 }
 
@@ -47,7 +47,7 @@
 
 .form-container h2 {
   font-size: 1.25rem;
-  color: #444;
+  color: #003366;
   margin-bottom: 2rem;
 }
 
@@ -83,11 +83,11 @@
 .or-divider hr {
   flex: 1;
   border: none;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #ccc;
 }
 
 .email-btn {
-  background: #2e203f;
+  background: #003366;
   color: white;
   padding: 0.75rem 1rem;
   width: 100%;
@@ -98,6 +98,10 @@
   cursor: pointer;
 }
 
+.email-btn:hover {
+  background: #005288;
+}
+
 .existing-account {
   margin-top: 2rem;
   font-size: 0.9rem;
@@ -105,7 +109,7 @@
 }
 
 .existing-account a {
-  color: #2e203f;
+  color: #003366;
   text-decoration: none;
   font-weight: 600;
 }
