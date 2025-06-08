@@ -1,59 +1,116 @@
-.section-block {
+.mentorloop-hero {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 6rem 4rem;
-  gap: 4rem;
+  background: #f5f9ff;
   max-width: 1200px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
-.section-block .text {
+.hero-left,
+.hero-right {
   flex: 1;
+  min-width: 300px;
+  max-width: 48%;
 }
 
-.section-block .image {
-  flex: 1;
-}
-
-.section-block .text h2 {
-  font-size: 2rem;
+.hero-left h1 {
+  font-size: 2.5rem;
   font-weight: 800;
   color: #003366;
   margin-bottom: 1rem;
 }
 
-.section-block .text p {
+.hero-left p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.hero-right img {
+  width: 100%;
+  border-radius: 12px;
+  border: 3px solid #f0f4f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button {
+  background: #003366;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #005599;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  padding: 6rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.section.alt {
+  background-color: #f9fbfd;
+}
+
+.section .text {
+  flex: 1;
+}
+
+.section .text h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+.section .text p {
   font-size: 1.1rem;
   color: #333;
   line-height: 1.7;
 }
 
-.section-block img {
+.section .image {
+  flex: 1;
+}
+
+.section .image img {
   width: 100%;
-  height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  object-fit: cover;
   border: 3px solid #f0f4f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
-.alt-block {
-  background: #f9fbfd;
-}
-
-@media screen and (max-width: 1024px) {
-  .section-block {
+@media (max-width: 1024px) {
+  .mentorloop-hero,
+  .section {
     flex-direction: column;
     text-align: center;
     padding: 4rem 2rem;
   }
 
-  .section-block .image {
-    order: -1;
+  .hero-left,
+  .hero-right,
+  .section .text,
+  .section .image {
+    max-width: 100%;
   }
 
-  .section-block .text,
-  .section-block .image {
-    max-width: 100%;
+  .section .image {
+    order: -1;
   }
 }
