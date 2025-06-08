@@ -15,7 +15,9 @@ export default function Landing() {
               MentorMe connects students to alumni and mentors based on real experience—not guesswork.
               One conversation can change a life.
             </p>
-            <div className="cta-banner">Join the Movement Today</div>
+            <a href="/register">
+              <div className="cta-banner">Join the Movement Today</div>
+            </a>
           </div>
           <div className="hero-right">
             <img
