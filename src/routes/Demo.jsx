@@ -4,7 +4,6 @@ import "./Demo.css";
 export default function Demo() {
   return (
     <div className="demo-page">
-      {/* Left: Pitch Text */}
       <div className="demo-left">
         <h1>Empower your school with MentorMe</h1>
         <p>
@@ -23,28 +22,21 @@ export default function Demo() {
         </div>
       </div>
 
-      {/* Right: Form */}
       <div className="demo-right">
         <form className="demo-form">
           <h2>Request a Demo</h2>
           <label>First Name*</label>
           <input type="text" required />
-
           <label>Last Name*</label>
           <input type="text" required />
-
           <label>Email*</label>
           <input type="email" required />
-
           <label>Phone</label>
           <input type="tel" />
-
           <label>School or Org Name*</label>
           <input type="text" required />
-
           <label>What are you hoping to solve?</label>
           <textarea rows="3" />
-
           <button type="submit">Get a Demo</button>
           <p className="disclaimer">
             By clicking "Get a Demo," you agree to MentorMe's{" "}
