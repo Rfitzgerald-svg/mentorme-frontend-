@@ -1,13 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const handleGoogleLogin = () => {
     console.log("Google login triggered");
   };
 
   const handleEmailSignup = () => {
-    window.location.href = "/register/email";
+    navigate("/register/email");
   };
 
   return (
