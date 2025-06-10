@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Demo.css";
 
 export default function Demo() {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div style={styles.successWrapper}>
+        <div style={styles.successContainer}>
+          <h4 style={styles.successLabel}>SUCCESS!</h4>
+          <h1 style={styles.successHeading}>🎉 WE GOT YOUR DEMO REQUEST</h1>
+          <p style={styles.successText}>
+            A member of our team will be in touch within 24 hours. <br />
+            In the meantime, get ready to experience modern mentorship — built for students, trusted by schools.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="demo-page">
       <div className="demo-left">
@@ -23,7 +45,7 @@ export default function Demo() {
       </div>
 
       <div className="demo-right">
-        <form className="demo-form">
+        <form className="demo-form" onSubmit={handleSubmit}>
           <h2>Request a Demo</h2>
           <label>First Name*</label>
           <input type="text" required />
@@ -47,3 +69,37 @@ export default function Demo() {
     </div>
   );
 }
+
+const styles = {
+  successWrapper: {
+    minHeight: "100vh",
+    backgroundColor: "#003366",
+    color: "white",
+    padding: "4rem 2rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  successContainer: {
+    maxWidth: 720,
+  },
+  successLabel: {
+    textTransform: "uppercase",
+    fontSize: "0.9rem",
+    letterSpacing: "1px",
+    color: "#a0c4ff",
+    marginBottom: "0.5rem",
+  },
+  successHeading: {
+    fontSize: "2.5rem",
+    fontWeight: "800",
+    marginBottom: "1.5rem",
+    lineHeight: 1.2,
+  },
+  successText: {
+    fontSize: "1.1rem",
+    color: "#f0f4f9",
+    lineHeight: 1.8,
+  },
+};
