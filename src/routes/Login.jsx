@@ -3,81 +3,171 @@ import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
-      {/* Container */}
-      <div className="w-full max-w-md bg-white border border-gray-200 rounded-xl shadow-md p-8 space-y-6">
-        {/* Logo top-left absolute */}
-        <div className="absolute top-6 left-6">
-          <img src="/logo.svg" alt="MentorMe Logo" className="h-6" />
+    <div style={styles.wrapper}>
+      {/* Logo in top-left */}
+      <div style={styles.logo}>
+        <img src="/logo.svg" alt="MentorMe Logo" style={{ height: 24 }} />
+      </div>
+
+      {/* Card container */}
+      <div style={styles.card}>
+        <h1 style={styles.heading}>Sign in to MentorMe</h1>
+
+        {/* Google login */}
+        <div style={{ width: "100%" }}>
+          <GoogleLogin
+            onSuccess={(res) => {
+              console.log("Google login success:", res);
+              alert("Google login successful. Redirecting...");
+            }}
+            onError={() => {
+              alert("Google login failed");
+            }}
+            width="100%"
+          />
         </div>
 
-        {/* Heading */}
-        <h1 className="text-2xl font-semibold text-center text-gray-900">
-          Sign in to MentorMe
-        </h1>
-
-        {/* Google Login */}
-        <GoogleLogin
-          onSuccess={(res) => {
-            console.log("Google login success:", res);
-            alert("Google login successful. Redirecting...");
-          }}
-          onError={() => {
-            alert("Google login failed");
-          }}
-          width="100%"
-        />
-
         {/* Divider */}
-        <div className="flex items-center gap-4 text-sm text-gray-400">
-          <div className="border-t border-gray-300 flex-grow" />
-          <span>or</span>
-          <div className="border-t border-gray-300 flex-grow" />
+        <div style={styles.dividerRow}>
+          <div style={styles.divider} />
+          <span style={styles.dividerText}>or</span>
+          <div style={styles.divider} />
         </div>
 
         {/* Form */}
-        <form className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-xs font-medium text-gray-600 mb-1">
-              EMAIL
-            </label>
+        <form style={{ width: "100%" }}>
+          <div style={styles.fieldGroup}>
+            <label htmlFor="email" style={styles.label}>EMAIL</label>
             <input
-              type="email"
               id="email"
+              type="email"
               placeholder="you@school.edu"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              style={styles.input}
             />
           </div>
 
-          <div>
-            <label htmlFor="password" className="block text-xs font-medium text-gray-600 mb-1">
-              PASSWORD
-            </label>
+          <div style={styles.fieldGroup}>
+            <label htmlFor="password" style={styles.label}>PASSWORD</label>
             <input
-              type="password"
               id="password"
+              type="password"
               placeholder="••••••••"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              style={styles.input}
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white font-semibold py-2.5 rounded-md text-sm hover:bg-blue-700 transition"
-          >
-            Log in
-          </button>
+          <button type="submit" style={styles.button}>Log in</button>
         </form>
 
-        {/* Footer Links */}
-        <div className="pt-2 space-y-2 text-center text-sm text-blue-600">
-          <a href="#" className="block hover:underline">Use single sign-on</a>
-          <a href="#" className="block hover:underline">Reset password</a>
-          <p className="text-gray-500">
-            No account? <a href="/register" className="text-blue-600 hover:underline">Create one</a>
+        {/* Links */}
+        <div style={styles.linksContainer}>
+          <a href="#" style={styles.link}>Use single sign-on</a>
+          <a href="#" style={styles.link}>Reset password</a>
+          <p style={styles.registerText}>
+            No account? <a href="/register" style={styles.link}>Create one</a>
           </p>
         </div>
       </div>
     </div>
   );
 }
+
+const styles = {
+  wrapper: {
+    minHeight: "100vh",
+    backgroundColor: "#ffffff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "2rem",
+    position: "relative",
+  },
+  logo: {
+    position: "absolute",
+    top: "1.5rem",
+    left: "1.5rem",
+  },
+  card: {
+    width: "100%",
+    maxWidth: 400,
+    backgroundColor: "#ffffff",
+    border: "1px solid #e5e7eb",
+    borderRadius: "12px",
+    padding: "2rem",
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "1.5rem",
+  },
+  heading: {
+    fontSize: "1.5rem",
+    fontWeight: 600,
+    textAlign: "center",
+    color: "#111827",
+  },
+  dividerRow: {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    gap: "1rem",
+  },
+  divider: {
+    flex: 1,
+    height: 1,
+    backgroundColor: "#d1d5db",
+  },
+  dividerText: {
+    fontSize: "0.875rem",
+    color: "#6b7280",
+  },
+  fieldGroup: {
+    marginBottom: "1rem",
+    width: "100%",
+  },
+  label: {
+    display: "block",
+    fontSize: "0.75rem",
+    fontWeight: 500,
+    color: "#4b5563",
+    marginBottom: "0.25rem",
+  },
+  input: {
+    width: "100%",
+    padding: "0.6rem 0.75rem",
+    fontSize: "0.875rem",
+    borderRadius: "6px",
+    border: "1px solid #d1d5db",
+    outline: "none",
+    transition: "border 0.2s",
+  },
+  button: {
+    width: "100%",
+    padding: "0.65rem",
+    backgroundColor: "#003366",
+    color: "white",
+    fontSize: "0.875rem",
+    fontWeight: 600,
+    borderRadius: "6px",
+    border: "none",
+    cursor: "pointer",
+    marginTop: "1rem",
+    transition: "background 0.2s",
+  },
+  linksContainer: {
+    width: "100%",
+    textAlign: "center",
+    fontSize: "0.875rem",
+    marginTop: "1rem",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.5rem",
+  },
+  link: {
+    color: "#2563eb",
+    textDecoration: "none",
+  },
+  registerText: {
+    color: "#6b7280",
+  },
+};
