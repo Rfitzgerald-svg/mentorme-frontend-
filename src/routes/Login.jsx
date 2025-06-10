@@ -12,8 +12,8 @@ export default function Login() {
       </div>
       <div className="md:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md space-y-6">
-          <h2 className="text-2xl font-bold text-gray-800">Sign in with Google</h2>
-          <p className="text-sm text-gray-500">Use your school Gmail account to continue.</p>
+          <h2 className="text-2xl font-bold text-gray-800">Mentors and Mentees — welcome back.</h2>
+          <p className="text-sm text-gray-500">Sign in with your school Gmail to continue.</p>
           <GoogleLogin
             onSuccess={(res) => {
               console.log("Google login success:", res);
