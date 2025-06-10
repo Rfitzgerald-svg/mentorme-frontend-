@@ -5,10 +5,10 @@ export default function Demo() {
   return (
     <div className="demo-page">
       <div className="demo-left">
-        <h1>Empower your school with MentorMe</h1>
+        <h1>Built for Students. Trusted by Schools. Ready for You.</h1>
         <p>
-          MentorMe connects students to real-world mentors through guided
-          onboarding, AI-powered matching, and scalable school tools.
+          MentorMe connects students to life-changing mentors through AI-powered matching,
+          guided onboarding, and secure school-based tracking. Let’s bring mentorship into the modern era.
           <br /><br />
           Fill out the form or email <strong>sales@mentorme.ai</strong> to speak with our team.
         </p>
