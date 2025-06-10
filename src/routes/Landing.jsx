@@ -104,7 +104,8 @@ export default function Landing() {
               </ul>
             </div>
 
-            <div className="tier">
+            <div className="tier popular">
+              <div className="badge">Most Popular</div>
               <h3>🔷 Growth</h3>
               <p>$9,000/year<br />501–2,000 students</p>
               <ul>
