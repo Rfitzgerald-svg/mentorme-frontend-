@@ -10,6 +10,14 @@
   grid-template-columns: 70px 1fr 300px;
 }
 
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  align-items: start;
+  width: 100%;
+}
+
 .sidebar {
   background-color: #0f1f2e;
   color: white;
