@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./Bot.css";
 
 export default function Bot() {
@@ -36,34 +35,22 @@ export default function Bot() {
   };
 
   return (
-    <div className="bot-layout">
-      <aside className="bot-sidebar">
-        <h2>MentorMe</h2>
-        <nav>
-          <Link to="/dashboard">🏠 Dashboard</Link>
-          <Link to="/network">🕸️ My Network</Link>
-          <Link to="/protips">💡 Pro Tips</Link>
-          <Link to="/bot" className="active">🤖 My Bot</Link>
-        </nav>
-      </aside>
-
-      <main className="bot-main">
-        <div className="chat-window">
-          {messages.map((msg, idx) => (
-            <div key={idx} className={`chat-message ${msg.sender}`}>
-              <p>{msg.text}</p>
-            </div>
-          ))}
-        </div>
-        <div className="input-bar">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask me anything about your future..."
-          />
-          <button onClick={handleSend}>Send</button>
-        </div>
-      </main>
-    </div>
+    <main className="bot-main">
+      <div className="chat-window">
+        {messages.map((msg, idx) => (
+          <div key={idx} className={`chat-message ${msg.sender}`}>
+            <p>{msg.text}</p>
+          </div>
+        ))}
+      </div>
+      <div className="input-bar">
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Ask me anything about your future..."
+        />
+        <button onClick={handleSend}>Send</button>
+      </div>
+    </main>
   );
 }
