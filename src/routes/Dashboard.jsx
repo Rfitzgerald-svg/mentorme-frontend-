@@ -5,7 +5,7 @@ export default function Dashboard() {
   const [showTour, setShowTour] = useState(true);
 
   return (
-    <div className="dashboard-page">
+    <div className="dashboard-wrapper">
       <main className="feed">
         {showTour && (
           <div className="tour-banner">
