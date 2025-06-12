@@ -8,6 +8,79 @@
   box-sizing: border-box;
 }
 
+.sidebar {
+  background-color: #0f1f2e;
+  color: white;
+  padding: 2rem;
+  position: relative;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  padding: 2rem 0.5rem;
+}
+
+.sidebar .logo {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .logo {
+  opacity: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 1.25rem;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed ul li a {
+  opacity: 0;
+}
+
+.collapse-btn {
+  position: absolute;
+  top: 50%;
+  right: -14px;
+  transform: translateY(-50%);
+  background-color: white;
+  color: #003366;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background 0.2s ease;
+}
+
+.collapse-btn:hover {
+  background-color: #f0f0f0;
+}
+
 .feed {
   background-color: #f5f7fa;
   overflow-y: auto;
