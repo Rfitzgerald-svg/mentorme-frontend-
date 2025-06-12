@@ -12,12 +12,12 @@ export default function Dashboard() {
         <h2 className="logo">MentorMe</h2>
         <nav>
           <ul>
-            <li><Link to="/dashboard">Dashboard</Link></li>
-            <li><Link to="/network">My Network</Link></li>
-            <li><Link to="/bot">My Bot</Link></li>
-            <li><Link to="/protips">Pro Tips</Link></li>
-            <li><Link to="/admin">Admin Panel</Link></li>
-            <li><Link to="/profile">My Profile</Link></li>
+            <li><Link to="/dashboard">🏠 Dashboard</Link></li>
+            <li><Link to="/network">🕸️ My Network</Link></li>
+            <li><Link to="/protips">💡 Pro Tips</Link></li>
+            <li><Link to="/bot">🤖 My Bot</Link></li>
+            <li><Link to="/admin">🛠 Admin</Link></li>
+            <li><Link to="/profile">👤 My Profile</Link></li>
           </ul>
         </nav>
         <button className="collapse-btn" onClick={() => setSidebarCollapsed(!sidebarCollapsed)}>
