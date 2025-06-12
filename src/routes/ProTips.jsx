@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./ProTips.css";
-import { Link } from "react-router-dom";
 
 const tips = [
   {
@@ -32,8 +31,7 @@ const tips = [
     description: "Set the tone, ask well, and close strong.",
     tag: "Professionalism",
     image: "https://images.unsplash.com/photo-1525182008055-f88b95ff7980"
-  },
-  // Repeat or expand to 25 for demo
+  }
 ];
 
 export default function ProTips() {
@@ -46,38 +44,26 @@ export default function ProTips() {
   );
 
   return (
-    <div className="protips-layout">
-      <aside className="protips-sidebar">
-        <h2>MentorMe</h2>
-        <nav>
-          <Link to="/dashboard">🏠 Dashboard</Link>
-          <Link to="/network">🕸️ My Network</Link>
-          <Link to="/protips" className="active">💡 Pro Tips</Link>
-          <Link to="/bot">🤖 My Bot</Link>
-        </nav>
-      </aside>
+    <main className="protips-main">
+      <input
+        className="searchbar"
+        placeholder="Let's Learn"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
 
-      <main className="protips-main">
-        <input
-          className="searchbar"
-          placeholder="Let's Learn"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-
-        <div className="tips-column">
-          {filteredTips.map((tip, i) => (
-            <div key={i} className="tip-card">
-              <img src={tip.image} alt={tip.title} />
-              <div className="tip-content">
-                <h3>{tip.title}</h3>
-                <p>{tip.description}</p>
-                <span className="tip-tag">{tip.tag}</span>
-              </div>
+      <div className="tips-column">
+        {filteredTips.map((tip, i) => (
+          <div key={i} className="tip-card">
+            <img src={tip.image} alt={tip.title} />
+            <div className="tip-content">
+              <h3>{tip.title}</h3>
+              <p>{tip.description}</p>
+              <span className="tip-tag">{tip.tag}</span>
             </div>
-          ))}
-        </div>
-      </main>
-    </div>
+          </div>
+        ))}
+      </div>
+    </main>
   );
 }
