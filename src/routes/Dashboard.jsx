@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
 
 export default function Dashboard() {
+  const [showTour, setShowTour] = useState(true);
+
   return (
     <div className="dashboard-wrapper">
       <aside className="sidebar">
@@ -20,6 +22,13 @@ export default function Dashboard() {
       </aside>
 
       <main className="feed">
+        {showTour && (
+          <div className="tour-banner">
+            <h3>Welcome to your Dashboard! 🎉</h3>
+            <p>This is where your mentorship journey begins — explore your feed, find Pro Tips, and connect with your network.</p>
+            <button onClick={() => setShowTour(false)}>Got it</button>
+          </div>
+        )}
         <h1>Welcome back 👋</h1>
         <section className="post-card">
           <h3>🎉 Sarah M. just landed an internship at Google!</h3>
