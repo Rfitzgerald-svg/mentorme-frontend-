@@ -4,10 +4,11 @@ import "./Dashboard.css";
 
 export default function Dashboard() {
   const [showTour, setShowTour] = useState(true);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="dashboard-wrapper">
-      <aside className="sidebar">
+    <div className={`dashboard-wrapper ${sidebarCollapsed ? "collapsed" : ""}`}>
+      <aside className={`sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
         <h2 className="logo">MentorMe</h2>
         <nav>
           <ul>
@@ -15,10 +16,13 @@ export default function Dashboard() {
             <li><Link to="/network">My Network</Link></li>
             <li><Link to="/bot">My Bot</Link></li>
             <li><Link to="/protips">Pro Tips</Link></li>
-            <li><Link to="/profile">Profile</Link></li>
             <li><Link to="/admin">Admin Panel</Link></li>
+            <li><Link to="/profile">My Profile</Link></li>
           </ul>
         </nav>
+        <button className="collapse-btn" onClick={() => setSidebarCollapsed(!sidebarCollapsed)}>
+          {sidebarCollapsed ? "➡" : "⬅"}
+        </button>
       </aside>
 
       <main className="feed">
