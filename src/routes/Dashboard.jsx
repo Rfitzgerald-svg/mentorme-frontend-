@@ -1,30 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./Dashboard.css";
 
 export default function Dashboard() {
   const [showTour, setShowTour] = useState(true);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className={`dashboard-wrapper ${sidebarCollapsed ? "collapsed" : ""}`}>
-      <aside className={`sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
-        <h2 className="logo">MentorMe</h2>
-        <nav>
-          <ul>
-            <li><Link to="/dashboard">🏠 Dashboard</Link></li>
-            <li><Link to="/network">🕸️ My Network</Link></li>
-            <li><Link to="/protips">💡 Pro Tips</Link></li>
-            <li><Link to="/bot">🤖 My Bot</Link></li>
-            <li><Link to="/admin">🛠 Admin</Link></li>
-            <li><Link to="/profile">👤 My Profile</Link></li>
-          </ul>
-        </nav>
-        <button className="collapse-btn" onClick={() => setSidebarCollapsed(!sidebarCollapsed)}>
-          {sidebarCollapsed ? "➡" : "⬅"}
-        </button>
-      </aside>
-
+    <div className="dashboard-page">
       <main className="feed">
         {showTour && (
           <div className="tour-banner">
