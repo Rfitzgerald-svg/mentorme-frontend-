@@ -27,6 +27,39 @@ export default function Profile() {
     setIsEditing(false);
   };
 
+  const userInterests = ["Finance", "Mentorship", "Media"];
+
+  const allUsers = [
+    {
+      name: "Casey Johnson",
+      description: "2nd year at Princeton, interested in VC",
+      interests: ["Finance", "Startups"]
+    },
+    {
+      name: "Ava Thomas",
+      description: "Taft alum · Media + Finance hybrid",
+      interests: ["Media", "Education"]
+    },
+    {
+      name: "Jayden Wu",
+      description: "Mentorship leader, ready to connect",
+      interests: ["Mentorship", "Leadership"]
+    },
+    {
+      name: "Emily Chen",
+      description: "Engineering student into AI + Music",
+      interests: ["AI", "Music"]
+    }
+  ];
+
+  const matchedUsers = allUsers
+    .map(user => {
+      const shared = user.interests.filter(i => userInterests.includes(i));
+      return { ...user, shared };
+    })
+    .filter(user => user.shared.length > 0)
+    .slice(0, 3);
+
   return (
     <div className="profile-wrapper">
       <div className="profile-left">
@@ -84,21 +117,18 @@ export default function Profile() {
 
         <div className="profile-section">
           <h2>Skills & Interests</h2>
-          <p>Finance · Entrepreneurship · Mentorship · Media</p>
+          <p>{userInterests.join(" · ")}</p>
         </div>
       </div>
 
       <div className="profile-right">
         <h3>Next Connects 🔗</h3>
-        <div className="connect-card">
-          <p><strong>Casey Johnson</strong><br />2nd year at Princeton, interested in VC</p>
-        </div>
-        <div className="connect-card">
-          <p><strong>Ava Thomas</strong><br />Taft alum · Media + Finance hybrid</p>
-        </div>
-        <div className="connect-card">
-          <p><strong>Jayden Wu</strong><br />Mentorship leader, ready to connect</p>
-        </div>
+        {matchedUsers.map((user, index) => (
+          <div key={index} className="connect-card">
+            <p><strong>{user.name}</strong><br />{user.description}</p>
+            <p className="match-reason">Shared Interest: {user.shared[0]}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
