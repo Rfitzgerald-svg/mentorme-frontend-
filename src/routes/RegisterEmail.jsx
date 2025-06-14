@@ -22,7 +22,7 @@ export default function RegisterEmail() {
     if (error) {
       setErrorMsg(error.message);
     } else {
-      navigate("/dashboard");
+      navigate("/choose-role");
     }
   };
 
