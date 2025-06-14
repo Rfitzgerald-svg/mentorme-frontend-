@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Profile.css";
 
 export default function Profile() {
@@ -13,6 +13,8 @@ export default function Profile() {
   const [tempHeadline, setTempHeadline] = useState(headline);
   const [tempLocation, setTempLocation] = useState(location);
 
+  const [videoURL, setVideoURL] = useState(localStorage.getItem("videoBioURL") || null);
+
   const saveChanges = () => {
     setName(tempName);
     setHeadline(tempHeadline);
@@ -25,6 +27,14 @@ export default function Profile() {
     setTempHeadline(headline);
     setTempLocation(location);
     setIsEditing(false);
+  };
+
+  const handleVideoUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    setVideoURL(url);
+    localStorage.setItem("videoBioURL", url);
   };
 
   const userInterests = ["Finance", "Mentorship", "Media"];
@@ -44,11 +54,6 @@ export default function Profile() {
       name: "Jayden Wu",
       description: "Mentorship leader, ready to connect",
       interests: ["Mentorship", "Leadership"]
-    },
-    {
-      name: "Emily Chen",
-      description: "Engineering student into AI + Music",
-      interests: ["AI", "Music"]
     }
   ];
 
@@ -93,17 +98,34 @@ export default function Profile() {
         </div>
 
         <div className="video-bio-section">
-          <button
-            className="add-video-btn"
-            onClick={() => setShowVideoPrompt(!showVideoPrompt)}
-          >
-            + Add 30s Video Bio
-          </button>
-          {showVideoPrompt && (
-            <div className="video-prompt">
-              <h4>🎥 Record your story!</h4>
-              <p>Tell us who you are, what you're interested in, and what you're hoping to get out of this platform. Make it fun, honest, and 30 seconds max!</p>
-            </div>
+          {videoURL ? (
+            <>
+              <h4>🎥 My Video Bio</h4>
+              <video src={videoURL} controls className="video-preview" />
+              <label className="change-video-label">
+                Change Video
+                <input type="file" accept="video/mp4,video/quicktime" onChange={handleVideoUpload} hidden />
+              </label>
+            </>
+          ) : (
+            <>
+              <button
+                className="add-video-btn"
+                onClick={() => setShowVideoPrompt(!showVideoPrompt)}
+              >
+                + Add 30s Video Bio
+              </button>
+              {showVideoPrompt && (
+                <div className="video-prompt">
+                  <h4>🎥 Record your story!</h4>
+                  <p>Tell us who you are, what you're interested in, and what you're hoping to get out of this platform. Make it fun, honest, and 30 seconds max!</p>
+                  <label className="upload-btn">
+                    Upload Video
+                    <input type="file" accept="video/mp4,video/quicktime" onChange={handleVideoUpload} hidden />
+                  </label>
+                </div>
+              )}
+            </>
           )}
         </div>
 
