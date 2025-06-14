@@ -15,6 +15,7 @@ import Bot from "./routes/Bot.jsx";
 import ProTips from "./routes/ProTips.jsx";
 import AdminPanel from "./routes/AdminPanel.jsx";
 import Demo from "./routes/Demo.jsx";
+import Profile from "./routes/Profile.jsx";
 
 import Layout from "./components/Layout";
 
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/bot" element={<Layout><Bot /></Layout>} />
         <Route path="/protips" element={<Layout><ProTips /></Layout>} />
         <Route path="/admin" element={<Layout><AdminPanel /></Layout>} />
+        <Route path="/profile" element={<Layout><Profile /></Layout>} />
         <Route path="/chat/:matchId" element={<ChatRoom />} />
         <Route path="/calendar" element={<CalendarPage />} />
       </Routes>
