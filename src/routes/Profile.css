@@ -139,3 +139,28 @@
   color: #0073b1;
   margin-top: 0.25rem;
 }
+.video-preview {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.upload-btn,
+.change-video-label {
+  display: inline-block;
+  background-color: #003366;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.upload-btn:hover,
+.change-video-label:hover {
+  background-color: #005599;
+}
