@@ -1,65 +1,58 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const handleGoogleSuccess = (res) => {
+    console.log("Google login success:", res);
+    alert("Google login successful. Redirecting...");
+    navigate("/dashboard");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/dashboard");
+  };
+
   return (
     <div style={styles.wrapper}>
-      {/* Logo in top-left */}
       <div style={styles.logo}>
         <img src="/logo.svg" alt="MentorMe Logo" style={{ height: 24 }} />
       </div>
 
-      {/* Card container */}
       <div style={styles.card}>
         <h1 style={styles.heading}>Sign in to MentorMe</h1>
 
-        {/* Google login */}
         <div style={{ width: "100%" }}>
           <GoogleLogin
-            onSuccess={(res) => {
-              console.log("Google login success:", res);
-              alert("Google login successful. Redirecting...");
-            }}
-            onError={() => {
-              alert("Google login failed");
-            }}
+            onSuccess={handleGoogleSuccess}
+            onError={() => alert("Google login failed")}
             width="100%"
           />
         </div>
 
-        {/* Divider */}
         <div style={styles.dividerRow}>
           <div style={styles.divider} />
           <span style={styles.dividerText}>or</span>
           <div style={styles.divider} />
         </div>
 
-        {/* Form */}
-        <form style={{ width: "100%" }}>
+        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <div style={styles.fieldGroup}>
             <label htmlFor="email" style={styles.label}>EMAIL</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="you@school.edu"
-              style={styles.input}
-            />
+            <input id="email" type="email" placeholder="you@school.edu" style={styles.input} />
           </div>
 
           <div style={styles.fieldGroup}>
             <label htmlFor="password" style={styles.label}>PASSWORD</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="••••••••"
-              style={styles.input}
-            />
+            <input id="password" type="password" placeholder="••••••••" style={styles.input} />
           </div>
 
           <button type="submit" style={styles.button}>Log in</button>
         </form>
 
-        {/* Links */}
         <div style={styles.linksContainer}>
           <a href="#" style={styles.link}>Use single sign-on</a>
           <a href="#" style={styles.link}>Reset password</a>
