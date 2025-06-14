@@ -164,3 +164,9 @@
 .change-video-label:hover {
   background-color: #005599;
 }
+.public-profile-wrapper {
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
