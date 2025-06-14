@@ -134,3 +134,8 @@
   background-color: #ccc;
   color: #222;
 }
+.match-reason {
+  font-size: 0.85rem;
+  color: #0073b1;
+  margin-top: 0.25rem;
+}
