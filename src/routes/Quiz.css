@@ -1,1 +1,109 @@
+.quiz-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f3f7fb;
+  padding: 2rem;
+}
 
+.quiz-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.quiz-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-progress {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+textarea {
+  width: 100%;
+  height: 140px;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+  resize: vertical;
+}
+
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.quiz-nav button {
+  background: #003366;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quiz-nav button:disabled {
+  background: #ccc;
+}
+
+.review-list {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+
+.review-list li {
+  margin-bottom: 1rem;
+}
+
+.review-list button {
+  margin-left: 1rem;
+  background: #003366;
+  color: white;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.submit-btn {
+  margin-top: 1.5rem;
+  background: #003366;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.role-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.role-buttons button {
+  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #005599;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
