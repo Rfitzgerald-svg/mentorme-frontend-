@@ -4,9 +4,31 @@ import "./Profile.css";
 export default function Profile() {
   const [showVideoPrompt, setShowVideoPrompt] = useState(false);
 
+  const [name, setName] = useState("Russell Fitzgerald");
+  const [headline, setHeadline] = useState("The Taft School Class of 2025, Princeton University Class of 2029");
+  const [location, setLocation] = useState("Philadelphia, Pennsylvania");
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [tempName, setTempName] = useState(name);
+  const [tempHeadline, setTempHeadline] = useState(headline);
+  const [tempLocation, setTempLocation] = useState(location);
+
+  const saveChanges = () => {
+    setName(tempName);
+    setHeadline(tempHeadline);
+    setLocation(tempLocation);
+    setIsEditing(false);
+  };
+
+  const cancelChanges = () => {
+    setTempName(name);
+    setTempHeadline(headline);
+    setTempLocation(location);
+    setIsEditing(false);
+  };
+
   return (
     <div className="profile-wrapper">
-      {/* LEFT COLUMN */}
       <div className="profile-left">
         <div className="profile-banner" />
         <div className="profile-header">
@@ -16,9 +38,24 @@ export default function Profile() {
             className="profile-pic"
           />
           <div className="profile-info">
-            <h1>Russell Fitzgerald</h1>
-            <p>The Taft School Class of 2025, Princeton University Class of 2029</p>
-            <p>Philadelphia, Pennsylvania · <span className="link">Contact info</span></p>
+            {isEditing ? (
+              <>
+                <input value={tempName} onChange={(e) => setTempName(e.target.value)} />
+                <input value={tempHeadline} onChange={(e) => setTempHeadline(e.target.value)} />
+                <input value={tempLocation} onChange={(e) => setTempLocation(e.target.value)} />
+                <div className="edit-btns">
+                  <button onClick={saveChanges}>Save</button>
+                  <button onClick={cancelChanges} className="cancel">Cancel</button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h1>{name}</h1>
+                <p>{headline}</p>
+                <p>{location} · <span className="link">Contact info</span></p>
+                <button onClick={() => setIsEditing(true)} className="edit-link">✏️ Edit</button>
+              </>
+            )}
           </div>
         </div>
 
@@ -51,7 +88,6 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* RIGHT COLUMN */}
       <div className="profile-right">
         <h3>Next Connects 🔗</h3>
         <div className="connect-card">
