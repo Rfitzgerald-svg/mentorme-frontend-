@@ -67,6 +67,15 @@ export default function Profile() {
 
   return (
     <div className="profile-wrapper">
+      <div className="copy-link-box" onClick={() => {
+        const slug = name.toLowerCase().replaceAll(" ", "-");
+        const url = `${window.location.origin}/profile/${slug}`;
+        navigator.clipboard.writeText(url);
+        window.open(url, "_blank");
+      }}>
+        📋 Share Profile
+      </div>
+
       <div className="profile-left">
         <div className="profile-banner" />
         <div className="profile-header">
