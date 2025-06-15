@@ -26,6 +26,7 @@
   border-radius: 50%;
   padding: 4px;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .mini-profile img {
@@ -79,29 +80,24 @@
   transition: all 0.2s ease;
 }
 
-.connect {
-  background-color: #003366;
-  color: white;
-}
-
-.requestsent {
-  background-color: #FFD700;
-  color: #333;
-}
-
-.connected {
-  background-color: #4CAF50;
-  color: white;
-}
+.connect { background-color: #003366; color: white; }
+.requestsent { background-color: #FFD700; color: #333; }
+.connected { background-color: #4CAF50; color: white; }
 
 .network-right {
   width: 65%;
   position: relative;
   background: #eef5ff;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.pan-wrapper {
+  width: 1200px;
+  height: 1200px;
+  position: relative;
+  transform: translate(-300px, -300px);
+  cursor: grab;
+  transition: transform 0.2s ease;
 }
 
 .spiderweb {
@@ -123,6 +119,11 @@
   width: 80px;
   height: 80px;
   overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.node-card:hover {
+  transform: scale(1.05);
 }
 
 .node-card img {
