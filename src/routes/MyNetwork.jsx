@@ -1,129 +1,107 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./MyNetwork.css";
 
-const generateMockNodes = () => {
-  const mentors = Array.from({ length: 10 }, (_, i) => ({
-    id: `m${i}`,
+const mockNodes = [
+  {
+    id: "1",
+    name: "You",
+    role: "Student at The Taft School",
+    type: "center",
+    img: "https://randomuser.me/api/portraits/men/11.jpg",
+    bio: "Finance and lacrosse. Searching for alumni in business.",
+  },
+  ...Array.from({ length: 10 }, (_, i) => ({
+    id: `m${i + 1}`,
     name: `Mentor ${i + 1}`,
     role: "Mentor",
     type: "direct",
-    img: `https://randomuser.me/api/portraits/men/${i + 10}.jpg`,
-    bio: "Experienced professional. Passionate about mentoring."
-  }));
-
-  const peers = Array.from({ length: 10 }, (_, i) => ({
-    id: `p${i}`,
+    img: `https://randomuser.me/api/portraits/men/${i + 20}.jpg`,
+    bio: "Experienced professional. Passionate about mentoring.",
+  })),
+  ...Array.from({ length: 10 }, (_, i) => ({
+    id: `p${i + 1}`,
     name: `Peer ${i + 1}`,
-    role: "Student",
+    role: "Peer at School",
     type: "recommended",
     img: `https://randomuser.me/api/portraits/women/${i + 30}.jpg`,
-    bio: "Active in clubs. Exploring future careers."
-  }));
-
-  const cross = Array.from({ length: 10 }, (_, i) => ({
-    id: `c${i}`,
+    bio: "Active in clubs. Exploring future careers.",
+  })),
+  ...Array.from({ length: 10 }, (_, i) => ({
+    id: `x${i + 1}`,
     name: `Cross ${i + 1}`,
-    role: "Alum",
+    role: "Cross-School",
     type: "cross",
-    img: `https://randomuser.me/api/portraits/men/${i + 50}.jpg`,
-    bio: "Entrepreneurial and open to sharing."
-  }));
-
-  return [
-    {
-      id: "you",
-      name: "You",
-      role: "Student at The Taft School",
-      type: "center",
-      img: "https://randomuser.me/api/portraits/men/11.jpg",
-      bio: "Finance and lacrosse. Searching for alumni in business.",
-    },
-    ...mentors,
-    ...peers,
-    ...cross,
-  ];
-};
+    img: `https://randomuser.me/api/portraits/men/${i + 40}.jpg`,
+    bio: "Entrepreneurial and open to sharing.",
+  })),
+];
 
 export default function MyNetwork() {
-  const [nodes] = useState(generateMockNodes());
-  const [selectedId, setSelectedId] = useState("you");
+  const [selectedId, setSelectedId] = useState("1");
   const [connections, setConnections] = useState({});
-  const svgRef = useRef(null);
-  const dragRef = useRef({ dragging: false, x: 0, y: 0 });
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const svg = svgRef.current;
-    let startX, startY, scrollX, scrollY;
-
-    const onMouseDown = (e) => {
-      dragRef.current.dragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      scrollX = svg.scrollLeft;
-      scrollY = svg.scrollTop;
-    };
-
-    const onMouseMove = (e) => {
-      if (!dragRef.current.dragging) return;
-      svg.scrollLeft = scrollX - (e.clientX - startX);
-      svg.scrollTop = scrollY - (e.clientY - startY);
-    };
-
-    const onMouseUp = () => {
-      dragRef.current.dragging = false;
-    };
-
-    svg.addEventListener("mousedown", onMouseDown);
-    svg.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
-
-    return () => {
-      svg.removeEventListener("mousedown", onMouseDown);
-      svg.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-    };
-  }, []);
-
-  const centerX = 600;
-  const centerY = 600;
+  const getStatus = (id) => connections[id] || "Connect";
 
   const handleConnect = (id) => {
-    const state = connections[id];
+    const current = connections[id];
     const next =
-      state === "Connect"
+      current === "Connect"
         ? "Request Sent"
-        : state === "Request Sent"
+        : current === "Request Sent"
         ? "Connected"
         : "Connect";
     setConnections({ ...connections, [id]: next });
   };
 
-  const getStatus = (id) => connections[id] || "Connect";
+  const center = { x: 600, y: 400 };
 
-  const getPosition = (index, radius, count) => {
-    const angle = (index / count) * 2 * Math.PI;
+  const getPosition = (index, total, radius) => {
+    const angle = (index / total) * 2 * Math.PI;
     return {
-      x: centerX + radius * Math.cos(angle),
-      y: centerY + radius * Math.sin(angle),
+      x: center.x + radius * Math.cos(angle),
+      y: center.y + radius * Math.sin(angle),
     };
   };
 
-  const youNode = nodes.find((n) => n.type === "center");
-  const mentors = nodes.filter((n) => n.type === "direct");
-  const peers = nodes.filter((n) => n.type === "recommended");
-  const cross = nodes.filter((n) => n.type === "cross");
+  const directNodes = mockNodes.filter((n) => n.type === "direct");
+  const recommendedNodes = mockNodes.filter((n) => n.type === "recommended");
+  const crossNodes = mockNodes.filter((n) => n.type === "cross");
 
-  const layers = [
-    { group: mentors, radius: 160 },
-    { group: peers, radius: 300 },
-    { group: cross, radius: 440 },
-  ];
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    dragStart.current = { x: e.clientX - offset.x, y: e.clientY - offset.y };
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      setOffset({
+        x: e.clientX - dragStart.current.x,
+        y: e.clientY - dragStart.current.y,
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [isDragging]);
 
   return (
     <div className="network-wrapper">
       <div className="network-left">
         <div className="profile-minis">
-          {nodes.map((node) => (
+          {mockNodes.map((node) => (
             <div
               key={node.id}
               className={`mini-profile ${node.type} ${selectedId === node.id ? "selected" : ""}`}
@@ -133,80 +111,74 @@ export default function MyNetwork() {
             </div>
           ))}
         </div>
-
         <div className="profile-expanded">
-          {nodes
-            .filter((n) => n.id === selectedId)
+          {mockNodes
+            .filter((node) => node.id === selectedId)
             .map((node) => (
               <div key={node.id} className="profile-card">
                 <img src={node.img} alt={node.name} />
                 <h2>{node.name}</h2>
                 <p><strong>{node.role}</strong></p>
                 <p>{node.bio}</p>
-                {node.type !== "center" && (
-                  <button
-                    className={`connect-button ${getStatus(node.id).replace(" ", "").toLowerCase()}`}
-                    onClick={() => handleConnect(node.id)}
-                  >
-                    {getStatus(node.id)}
-                  </button>
-                )}
+                <button
+                  className={`connect-button ${getStatus(selectedId).replace(" ", "").toLowerCase()}`}
+                  onClick={() => handleConnect(selectedId)}
+                >
+                  {getStatus(selectedId)}
+                </button>
               </div>
             ))}
         </div>
       </div>
 
-      <div className="network-right" ref={svgRef}>
-        <svg className="spiderweb" width="1200" height="1200">
-          {/* Center lines */}
-          {layers.flatMap((layer) =>
-            layer.group.map((node, i) => {
-              const { x, y } = getPosition(i, layer.radius, layer.group.length);
-              return (
-                <line
-                  key={`line-${node.id}`}
-                  x1={centerX}
-                  y1={centerY}
-                  x2={x}
-                  y2={y}
-                  stroke={
-                    node.type === "direct"
-                      ? "#4CAF50"
-                      : node.type === "recommended"
-                      ? "#FFD700"
-                      : "#999"
-                  }
-                  strokeWidth="1.5"
-                />
-              );
-            })
-          )}
+      <div className="network-right" onMouseDown={handleMouseDown}>
+        <svg className="spiderweb">
+          {[...directNodes, ...recommendedNodes, ...crossNodes].map((node, i, arr) => {
+            let radius = 140;
+            if (recommendedNodes.includes(node)) radius = 220;
+            if (crossNodes.includes(node)) radius = 300;
+            const pos = getPosition(i, arr.length, radius);
+            return (
+              <line
+                key={`line-${node.id}`}
+                x1={center.x + offset.x}
+                y1={center.y + offset.y}
+                x2={pos.x + offset.x}
+                y2={pos.y + offset.y}
+                stroke="#bbb"
+              />
+            );
+          })}
 
-          {/* Center node */}
-          <foreignObject x={centerX - 45} y={centerY - 45} width="90" height="90">
-            <div className="node-card center">
-              <img src={youNode.img} alt="You" />
-              <p>{youNode.bio}</p>
-            </div>
-          </foreignObject>
+          {[...mockNodes].map((node, i, arr) => {
+            let radius = 0;
+            if (node.type === "direct") radius = 140;
+            if (node.type === "recommended") radius = 220;
+            if (node.type === "cross") radius = 300;
 
-          {/* Render all other nodes */}
-          {layers.flatMap((layer) =>
-            layer.group.map((node, i) => {
-              const { x, y } = getPosition(i, layer.radius, layer.group.length);
-              return (
-                <foreignObject key={node.id} x={x - 45} y={y - 45} width="90" height="90">
-                  <div
-                    className={`node-card ${node.type}`}
-                    onClick={() => setSelectedId(node.id)}
-                  >
-                    <img src={node.img} alt={node.name} />
-                    <p>{node.bio}</p>
-                  </div>
-                </foreignObject>
-              );
-            })
-          )}
+            const pos = node.type === "center"
+              ? center
+              : getPosition(i, arr.length, radius);
+
+            return (
+              <foreignObject
+                key={node.id}
+                x={pos.x + offset.x - 45}
+                y={pos.y + offset.y - 45}
+                width="90"
+                height="90"
+                className="node-fo"
+              >
+                <div
+                  className={`node-card ${node.type}`}
+                  onClick={() => setSelectedId(node.id)}
+                >
+                  <img src={node.img} alt={node.name} />
+                  <p>{node.bio}</p>
+                </div>
+              </foreignObject>
+            );
+          })}
         </svg>
 
         <div className="legend">
