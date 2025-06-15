@@ -15,6 +15,26 @@ export default function Profile() {
 
   const [videoURL, setVideoURL] = useState(localStorage.getItem("videoBioURL") || null);
 
+  const [aboutMe, setAboutMe] = useState(localStorage.getItem("aboutMe") || "Hi, I'm Russell. I’m passionate about startups, storytelling, and growing through mentorship. I'm looking to connect with someone who's been in my shoes.");
+  const [editingAbout, setEditingAbout] = useState(false);
+  const [aboutDraft, setAboutDraft] = useState(aboutMe);
+  const [isPublic, setIsPublic] = useState(localStorage.getItem("aboutMePublic") === "true");
+
+  const [quizAnswers, setQuizAnswers] = useState([]);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("quizAnswers");
+    if (stored) setQuizAnswers(JSON.parse(stored));
+  }, []);
+
+  const saveAboutMe = (publish) => {
+    setAboutMe(aboutDraft);
+    localStorage.setItem("aboutMe", aboutDraft);
+    localStorage.setItem("aboutMePublic", publish);
+    setIsPublic(publish);
+    setEditingAbout(false);
+  };
+
   const saveChanges = () => {
     setName(tempName);
     setHeadline(tempHeadline);
@@ -38,23 +58,10 @@ export default function Profile() {
   };
 
   const userInterests = ["Finance", "Mentorship", "Media"];
-
   const allUsers = [
-    {
-      name: "Casey Johnson",
-      description: "2nd year at Princeton, interested in VC",
-      interests: ["Finance", "Startups"]
-    },
-    {
-      name: "Ava Thomas",
-      description: "Taft alum · Media + Finance hybrid",
-      interests: ["Media", "Education"]
-    },
-    {
-      name: "Jayden Wu",
-      description: "Mentorship leader, ready to connect",
-      interests: ["Mentorship", "Leadership"]
-    }
+    { name: "Casey Johnson", description: "2nd year at Princeton, interested in VC", interests: ["Finance", "Startups"] },
+    { name: "Ava Thomas", description: "Taft alum · Media + Finance hybrid", interests: ["Media", "Education"] },
+    { name: "Jayden Wu", description: "Mentorship leader, ready to connect", interests: ["Mentorship", "Leadership"] }
   ];
 
   const matchedUsers = allUsers
@@ -79,11 +86,7 @@ export default function Profile() {
       <div className="profile-left">
         <div className="profile-banner" />
         <div className="profile-header">
-          <img
-            src="https://via.placeholder.com/120"
-            alt="Profile"
-            className="profile-pic"
-          />
+          <img src="https://via.placeholder.com/120" alt="Profile" className="profile-pic" />
           <div className="profile-info">
             {isEditing ? (
               <>
@@ -118,10 +121,7 @@ export default function Profile() {
             </>
           ) : (
             <>
-              <button
-                className="add-video-btn"
-                onClick={() => setShowVideoPrompt(!showVideoPrompt)}
-              >
+              <button className="add-video-btn" onClick={() => setShowVideoPrompt(!showVideoPrompt)}>
                 + Add 30s Video Bio
               </button>
               {showVideoPrompt && (
@@ -137,6 +137,38 @@ export default function Profile() {
             </>
           )}
         </div>
+
+        <div className="profile-section">
+          <h2>About Me</h2>
+          {editingAbout ? (
+            <>
+              <textarea value={aboutDraft} onChange={(e) => setAboutDraft(e.target.value)} style={{ width: "100%", height: 120, marginBottom: 12 }} />
+              <div className="edit-btns">
+                <button onClick={() => saveAboutMe(true)}>Publish Public</button>
+                <button onClick={() => saveAboutMe(false)} className="cancel">Save Private</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <p>{aboutMe}</p>
+              <button onClick={() => setEditingAbout(true)} className="edit-link">✏️ Edit</button>
+              <p style={{ fontSize: "0.8rem", color: "#888", marginTop: 8 }}>Visibility: {isPublic ? "🌍 Public" : "🔒 Private"}</p>
+            </>
+          )}
+        </div>
+
+        {quizAnswers.length > 0 && (
+          <div className="profile-section">
+            <h2>From My Quiz</h2>
+            <ul>
+              {quizAnswers.map((a, i) => (
+                <li key={i} style={{ marginBottom: "1rem" }}>
+                  <strong>Q{i + 1}:</strong> {a}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="profile-section">
           <h2>Education</h2>
