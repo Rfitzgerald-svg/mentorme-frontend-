@@ -26,7 +26,6 @@
   border-radius: 50%;
   padding: 4px;
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 .mini-profile img {
@@ -44,17 +43,12 @@
 .mini-profile.cross { border-color: #999; }
 .mini-profile.center { border-color: #003366; }
 
-.profile-expanded {
-  flex-grow: 1;
-}
-
 .profile-expanded .profile-card {
   background: white;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
-  margin-top: 1rem;
 }
 
 .profile-card img {
@@ -66,13 +60,6 @@
 
 .profile-card h2 {
   margin: 0;
-  font-size: 1.3rem;
-}
-
-.profile-card p {
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-  color: #444;
 }
 
 .profile-card .mutuals {
@@ -83,13 +70,13 @@
 
 .connect-button {
   margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1rem;
   font-size: 0.95rem;
   font-weight: bold;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .connect {
@@ -111,19 +98,16 @@
   width: 65%;
   position: relative;
   background: #eef5ff;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
 .spiderweb {
   width: 100%;
   height: 100%;
-}
-
-.node-fo {
-  overflow: visible;
+  cursor: grab;
 }
 
 .node-card {
@@ -140,11 +124,6 @@
   width: 80px;
   height: 80px;
   overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.node-card:hover {
-  transform: scale(1.05);
 }
 
 .node-card img {
@@ -158,7 +137,6 @@
   margin: 0;
   font-size: 0.6rem;
   line-height: 1rem;
-  color: #333;
 }
 
 .node-card.center { border: 2px solid #003366; }
@@ -180,14 +158,6 @@
 .legend ul {
   list-style: none;
   padding-left: 0;
-  margin: 0;
-}
-
-.legend li {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .legend .dot {
@@ -195,6 +165,7 @@
   height: 12px;
   width: 12px;
   border-radius: 50%;
+  margin-right: 8px;
 }
 
 .legend .center { background: #003366; }
