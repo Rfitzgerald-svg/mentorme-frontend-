@@ -8,7 +8,7 @@ const mockNodes = [
     role: "Student at The Taft School",
     type: "center",
     img: "https://randomuser.me/api/portraits/men/11.jpg",
-    bio: "Finance and lacrosse. Searching for alumni in business.",
+    bio: "Finance and lacrosse. Searching for alumni in business."
   },
   {
     id: "2",
@@ -36,6 +36,60 @@ const mockNodes = [
     img: "https://randomuser.me/api/portraits/men/85.jpg",
     bio: "Stanford MBA in private equity. Choate → Business path.",
     mutuals: "Matched on 4 interests"
+  },
+  {
+    id: "5",
+    name: "Lena Hart",
+    role: "Mentor at Meta",
+    type: "direct",
+    img: "https://randomuser.me/api/portraits/women/65.jpg",
+    bio: "Product manager at Meta. CS + design thinking.",
+    mutuals: "Intro’d via alumni advisor"
+  },
+  {
+    id: "6",
+    name: "Jason Wu",
+    role: "Student at Exeter",
+    type: "cross",
+    img: "https://randomuser.me/api/portraits/men/23.jpg",
+    bio: "Startup club lead. Coding + pitching enthusiast.",
+    mutuals: "4 quiz answers aligned"
+  },
+  {
+    id: "7",
+    name: "Maya Patel",
+    role: "Student at Taft",
+    type: "recommended",
+    img: "https://randomuser.me/api/portraits/women/91.jpg",
+    bio: "STEM + dance. Looking to connect with women in tech.",
+    mutuals: "3 quiz matches"
+  },
+  {
+    id: "8",
+    name: "Noah Brown",
+    role: "Mentor at BCG",
+    type: "direct",
+    img: "https://randomuser.me/api/portraits/men/45.jpg",
+    bio: "Strategy consultant. Ivy grad. Loves mentoring.",
+    mutuals: "Taft alum connection"
+  },
+  {
+    id: "9",
+    name: "Ella Zhang",
+    role: "Alum at Andover",
+    type: "cross",
+    img: "https://randomuser.me/api/portraits/women/33.jpg",
+    bio: "Building in AI. Andover → MIT → YC startup.",
+    mutuals: "Shared startup interest"
+  },
+  {
+    id: "10",
+    name: "Marcus Green",
+    role: "Student at Taft",
+    type: "recommended",
+    img: "https://randomuser.me/api/portraits/men/77.jpg",
+    bio: "Wants to learn about investment banking.",
+    mutuals: "Finance club + 2 mentors"
   }
 ];
 
@@ -97,7 +151,6 @@ export default function MyNetwork() {
             const angle = (i / (mockNodes.length - 1)) * 2 * Math.PI;
             const x = 300 + 150 * Math.cos(angle);
             const y = 200 + 150 * Math.sin(angle);
-
             return (
               <line
                 key={`line-${node.id}`}
@@ -109,12 +162,10 @@ export default function MyNetwork() {
               />
             );
           })}
-
           {mockNodes.map((node, i) => {
             const angle = (i / mockNodes.length) * 2 * Math.PI;
             const x = 300 + 150 * Math.cos(angle);
             const y = 200 + 150 * Math.sin(angle);
-
             return (
               <foreignObject
                 key={node.id}
@@ -135,7 +186,6 @@ export default function MyNetwork() {
             );
           })}
         </svg>
-
         <div className="legend">
           <h4>Legend</h4>
           <ul>
