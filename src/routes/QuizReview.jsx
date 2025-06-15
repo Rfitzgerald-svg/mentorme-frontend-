@@ -13,7 +13,7 @@ export default function QuizReview() {
   };
 
   const handleSubmit = () => {
-    // Submit to backend or store in global state here
+    localStorage.setItem("quizAnswers", JSON.stringify(answers));
     navigate("/dashboard");
   };
 
@@ -29,7 +29,9 @@ export default function QuizReview() {
             </li>
           ))}
         </ul>
-        <button className="submit-btn" onClick={handleSubmit}>Confirm & Go to Dashboard</button>
+        <button className="submit-btn" onClick={handleSubmit}>
+          Confirm & Go to Dashboard
+        </button>
       </div>
     </div>
   );
