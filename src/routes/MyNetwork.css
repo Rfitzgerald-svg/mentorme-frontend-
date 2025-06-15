@@ -26,7 +26,6 @@
   border-radius: 50%;
   padding: 4px;
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 .mini-profile img {
@@ -80,29 +79,43 @@
   transition: all 0.2s ease;
 }
 
-.connect { background-color: #003366; color: white; }
-.requestsent { background-color: #FFD700; color: #333; }
-.connected { background-color: #4CAF50; color: white; }
+.connect {
+  background-color: #003366;
+  color: white;
+}
+
+.requestsent {
+  background-color: #FFD700;
+  color: #333;
+}
+
+.connected {
+  background-color: #4CAF50;
+  color: white;
+}
 
 .network-right {
   width: 65%;
-  position: relative;
   background: #eef5ff;
+  position: relative;
   overflow: hidden;
 }
 
-.pan-wrapper {
-  width: 1200px;
-  height: 1200px;
-  position: relative;
-  transform: translate(-300px, -300px);
+.spiderweb-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   cursor: grab;
-  transition: transform 0.2s ease;
+}
+
+.spiderweb-container:active {
+  cursor: grabbing;
 }
 
 .spiderweb {
-  width: 100%;
-  height: 100%;
+  width: 1500px;
+  height: 1500px;
+  position: absolute;
 }
 
 .node-card {
@@ -119,11 +132,6 @@
   width: 80px;
   height: 80px;
   overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.node-card:hover {
-  transform: scale(1.05);
 }
 
 .node-card img {
