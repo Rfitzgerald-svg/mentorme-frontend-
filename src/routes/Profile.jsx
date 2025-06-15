@@ -6,43 +6,21 @@ export default function Profile() {
   const [name, setName] = useState("Russell Fitzgerald");
   const [headline, setHeadline] = useState("The Taft School Class of 2025, Princeton University Class of 2029");
   const [location, setLocation] = useState("Philadelphia, Pennsylvania");
-
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(name);
   const [tempHeadline, setTempHeadline] = useState(headline);
   const [tempLocation, setTempLocation] = useState(location);
-
   const [videoURL, setVideoURL] = useState(localStorage.getItem("videoBioURL") || null);
-
-  const [aboutMe, setAboutMe] = useState(localStorage.getItem("aboutMe") || "");
+  const [aboutMe, setAboutMe] = useState(localStorage.getItem("aboutMe") || "Hi, I'm Russell. I’m passionate about startups, storytelling, and growing through mentorship. I'm looking to connect with someone who's been in my shoes.");
   const [editingAbout, setEditingAbout] = useState(false);
   const [aboutDraft, setAboutDraft] = useState(aboutMe);
   const [isPublic, setIsPublic] = useState(localStorage.getItem("aboutMePublic") === "true");
-
   const [quizAnswers, setQuizAnswers] = useState([]);
 
   useEffect(() => {
     const stored = localStorage.getItem("quizAnswers");
     if (stored) setQuizAnswers(JSON.parse(stored));
   }, []);
-
-  const userKeywords = quizAnswers.flatMap(ans =>
-    ans.toLowerCase().split(/\W+/).filter(Boolean)
-  );
-
-  const allUsers = [
-    { name: "Casey Johnson", description: "2nd year at Princeton, interested in VC", quizKeywords: ["finance", "startups"] },
-    { name: "Ava Thomas", description: "Taft alum · Media + Finance hybrid", quizKeywords: ["media", "education"] },
-    { name: "Jayden Wu", description: "Mentorship leader, ready to connect", quizKeywords: ["mentorship", "leadership"] }
-  ];
-
-  const matchedUsers = allUsers
-    .map(user => {
-      const shared = user.quizKeywords.filter(k => userKeywords.includes(k));
-      return { ...user, shared };
-    })
-    .filter(user => user.shared.length > 0)
-    .slice(0, 3);
 
   const saveAboutMe = (publish) => {
     setAboutMe(aboutDraft);
@@ -73,6 +51,21 @@ export default function Profile() {
     setVideoURL(url);
     localStorage.setItem("videoBioURL", url);
   };
+
+  const userInterests = ["Finance", "Mentorship", "Media"];
+  const allUsers = [
+    { name: "Casey Johnson", description: "2nd year at Princeton, interested in VC", interests: ["Finance", "Startups"] },
+    { name: "Ava Thomas", description: "Taft alum · Media + Finance hybrid", interests: ["Media", "Education"] },
+    { name: "Jayden Wu", description: "Mentorship leader, ready to connect", interests: ["Mentorship", "Leadership"] }
+  ];
+
+  const matchedUsers = allUsers
+    .map(user => {
+      const shared = user.interests.filter(i => userInterests.includes(i));
+      return { ...user, shared };
+    })
+    .filter(user => user.shared.length > 0)
+    .slice(0, 3);
 
   return (
     <div className="profile-wrapper">
@@ -182,7 +175,7 @@ export default function Profile() {
 
         <div className="profile-section">
           <h2>Skills & Interests</h2>
-          <p>{userKeywords.join(" · ")}</p>
+          <p>{userInterests.join(" · ")}</p>
         </div>
       </div>
 
@@ -191,7 +184,7 @@ export default function Profile() {
         {matchedUsers.map((user, index) => (
           <div key={index} className="connect-card">
             <p><strong>{user.name}</strong><br />{user.description}</p>
-            <p className="match-reason">Shared Topic: {user.shared.join(", ")}</p>
+            <p className="match-reason">Shared Topic: {user.shared[0]}</p>
           </div>
         ))}
       </div>
