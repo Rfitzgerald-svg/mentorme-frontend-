@@ -1,40 +1,47 @@
 import React, { useState } from "react";
 import "./MyNetwork.css";
 
-const mockNodes = [
-  {
+const generateMockNodes = () => {
+  const center = [{
     id: "1",
     name: "You",
     role: "Student at The Taft School",
     type: "center",
     img: "https://randomuser.me/api/portraits/men/11.jpg",
-    bio: "Finance and lacrosse. Searching for alumni in business.",
-  },
-  ...Array.from({ length: 10 }, (_, i) => ({
+    bio: "Finance and lacrosse. Searching for alumni in business."
+  }];
+
+  const mentors = Array.from({ length: 10 }, (_, i) => ({
     id: `m${i + 1}`,
     name: `Mentor ${i + 1}`,
     role: `Mentor at Firm ${i + 1}`,
     type: "direct",
     img: `https://randomuser.me/api/portraits/men/${20 + i}.jpg`,
     bio: "Experienced professional. Passionate about mentoring."
-  })),
-  ...Array.from({ length: 10 }, (_, i) => ({
+  }));
+
+  const peers = Array.from({ length: 10 }, (_, i) => ({
     id: `p${i + 1}`,
     name: `Peer ${i + 1}`,
     role: `Student at School ${i + 1}`,
     type: "recommended",
     img: `https://randomuser.me/api/portraits/women/${30 + i}.jpg`,
     bio: "Active in clubs. Exploring future careers."
-  })),
-  ...Array.from({ length: 10 }, (_, i) => ({
+  }));
+
+  const cross = Array.from({ length: 10 }, (_, i) => ({
     id: `c${i + 1}`,
     name: `Cross Connect ${i + 1}`,
     role: `Alum at School ${i + 1}`,
     type: "cross",
     img: `https://randomuser.me/api/portraits/men/${40 + i}.jpg`,
     bio: "Entrepreneurial and open to sharing."
-  }))
-];
+  }));
+
+  return [...center, ...mentors, ...peers, ...cross];
+};
+
+const mockNodes = generateMockNodes();
 
 export default function MyNetwork() {
   const [selectedId, setSelectedId] = useState("1");
@@ -54,6 +61,27 @@ export default function MyNetwork() {
   };
 
   const center = { x: 400, y: 300 };
+
+  const layoutNodes = (type, radius, offset = 0) => {
+    const filtered = mockNodes.filter(n => n.type === type);
+    return filtered.map((node, i) => {
+      const angle = ((i + offset) / filtered.length) * 2 * Math.PI;
+      const x = center.x + radius * Math.cos(angle);
+      const y = center.y + radius * Math.sin(angle);
+      return { ...node, x, y };
+    });
+  };
+
+  const positionedNodes = [
+    ...layoutNodes("direct", 120),
+    ...layoutNodes("recommended", 220),
+    ...layoutNodes("cross", 320),
+    {
+      ...mockNodes.find(n => n.type === "center"),
+      x: center.x,
+      y: center.y
+    }
+  ];
 
   return (
     <div className="network-wrapper">
@@ -92,58 +120,38 @@ export default function MyNetwork() {
 
       <div className="network-right">
         <svg className="spiderweb" viewBox="0 0 800 600">
-          {mockNodes.slice(1).map((node, i) => {
-            let radius = 100;
-            if (node.type === "recommended") radius = 180;
-            if (node.type === "cross") radius = 260;
-
-            const index = i % 10;
-            const angle = (index / 10) * 2 * Math.PI;
-            const x = center.x + radius * Math.cos(angle);
-            const y = center.y + radius * Math.sin(angle);
-
+          {positionedNodes.map((node) => {
+            if (node.type === "center") return null;
             return (
               <line
                 key={`line-${node.id}`}
                 x1={center.x}
                 y1={center.y}
-                x2={x}
-                y2={y}
+                x2={node.x}
+                y2={node.y}
                 stroke="#ccc"
               />
             );
           })}
 
-          {mockNodes.map((node, i) => {
-            let radius = 0;
-            if (node.type === "direct") radius = 100;
-            if (node.type === "recommended") radius = 180;
-            if (node.type === "cross") radius = 260;
-
-            const index = i % 10;
-            const angle = (index / 10) * 2 * Math.PI;
-            const x = center.x + radius * Math.cos(angle);
-            const y = center.y + radius * Math.sin(angle);
-
-            return (
-              <foreignObject
-                key={node.id}
-                x={x - 45}
-                y={y - 45}
-                width="90"
-                height="90"
-                className="node-fo"
+          {positionedNodes.map((node) => (
+            <foreignObject
+              key={node.id}
+              x={node.x - 45}
+              y={node.y - 45}
+              width="90"
+              height="90"
+              className="node-fo"
+            >
+              <div
+                className={`node-card ${node.type}`}
+                onClick={() => setSelectedId(node.id)}
               >
-                <div
-                  className={`node-card ${node.type}`}
-                  onClick={() => setSelectedId(node.id)}
-                >
-                  <img src={node.img} alt={node.name} />
-                  <p>{node.bio}</p>
-                </div>
-              </foreignObject>
-            );
-          })}
+                <img src={node.img} alt={node.name} />
+                <p>{node.bio}</p>
+              </div>
+            </foreignObject>
+          ))}
         </svg>
 
         <div className="legend">
