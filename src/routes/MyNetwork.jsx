@@ -3,44 +3,41 @@ import "./MyNetwork.css";
 
 const mockNodes = [
   {
-    id: "0",
+    id: "1",
     name: "You",
     role: "Student at The Taft School",
     type: "center",
     img: "https://randomuser.me/api/portraits/men/11.jpg",
     bio: "Finance and lacrosse. Searching for alumni in business.",
   },
-  ...Array.from({ length: 10 }).map((_, i) => ({
-    id: `${i + 1}`,
+  ...Array.from({ length: 10 }, (_, i) => ({
+    id: `m${i + 1}`,
     name: `Mentor ${i + 1}`,
-    role: `Mentor at Company ${i + 1}`,
+    role: `Mentor at Firm ${i + 1}`,
     type: "direct",
     img: `https://randomuser.me/api/portraits/men/${20 + i}.jpg`,
-    bio: "Experienced professional. Passionate about mentorship.",
-    mutuals: `${i + 1} mutual connections`,
+    bio: "Experienced professional. Passionate about mentoring."
   })),
-  ...Array.from({ length: 10 }).map((_, i) => ({
-    id: `${i + 11}`,
+  ...Array.from({ length: 10 }, (_, i) => ({
+    id: `p${i + 1}`,
     name: `Peer ${i + 1}`,
     role: `Student at School ${i + 1}`,
     type: "recommended",
     img: `https://randomuser.me/api/portraits/women/${30 + i}.jpg`,
-    bio: "Active in clubs. Exploring future careers.",
-    mutuals: `Shared classes and clubs`,
+    bio: "Active in clubs. Exploring future careers."
   })),
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    id: `${i + 21}`,
-    name: `Cross ${i + 1}`,
-    role: `Alum at Cross School ${i + 1}`,
+  ...Array.from({ length: 10 }, (_, i) => ({
+    id: `c${i + 1}`,
+    name: `Cross Connect ${i + 1}`,
+    role: `Alum at School ${i + 1}`,
     type: "cross",
     img: `https://randomuser.me/api/portraits/men/${40 + i}.jpg`,
-    bio: "Entrepreneurial and open to sharing experiences.",
-    mutuals: `3 shared interests`,
-  })),
+    bio: "Entrepreneurial and open to sharing."
+  }))
 ];
 
 export default function MyNetwork() {
-  const [selectedId, setSelectedId] = useState("0");
+  const [selectedId, setSelectedId] = useState("1");
   const [connections, setConnections] = useState({});
 
   const getStatus = (id) => connections[id] || "Connect";
@@ -56,39 +53,7 @@ export default function MyNetwork() {
     setConnections({ ...connections, [id]: next });
   };
 
-  const layers = {
-    center: [mockNodes[0]],
-    direct: mockNodes.slice(1, 11),
-    recommended: mockNodes.slice(11, 21),
-    cross: mockNodes.slice(21),
-  };
-
-  const renderLayer = (nodes, radius, centerX, centerY) => {
-    return nodes.map((node, i) => {
-      const angle = (i / nodes.length) * 2 * Math.PI;
-      const x = centerX + radius * Math.cos(angle);
-      const y = centerY + radius * Math.sin(angle);
-
-      return (
-        <foreignObject
-          key={node.id}
-          x={x - 45}
-          y={y - 45}
-          width="90"
-          height="90"
-          className="node-fo"
-        >
-          <div
-            className={`node-card ${node.type}`}
-            onClick={() => setSelectedId(node.id)}
-          >
-            <img src={node.img} alt={node.name} />
-            <p>{node.bio}</p>
-          </div>
-        </foreignObject>
-      );
-    });
-  };
+  const center = { x: 400, y: 300 };
 
   return (
     <div className="network-wrapper">
@@ -113,7 +78,7 @@ export default function MyNetwork() {
                 <h2>{node.name}</h2>
                 <p><strong>{node.role}</strong></p>
                 <p>{node.bio}</p>
-                <p className="mutuals">{node.mutuals}</p>
+                <p className="mutuals">Shared interest</p>
                 <button
                   className={`connect-button ${getStatus(selectedId).replace(" ", "").toLowerCase()}`}
                   onClick={() => handleConnect(selectedId)}
@@ -126,17 +91,59 @@ export default function MyNetwork() {
       </div>
 
       <div className="network-right">
-        <svg className="spiderweb">
-          {renderLayer(layers.direct, 150, 400, 250)}
-          {renderLayer(layers.recommended, 220, 400, 250)}
-          {renderLayer(layers.cross, 300, 400, 250)}
+        <svg className="spiderweb" viewBox="0 0 800 600">
+          {mockNodes.slice(1).map((node, i) => {
+            let radius = 100;
+            if (node.type === "recommended") radius = 180;
+            if (node.type === "cross") radius = 260;
 
-          <foreignObject x={400 - 45} y={250 - 45} width="90" height="90">
-            <div className="node-card center">
-              <img src={mockNodes[0].img} alt="You" />
-              <p>{mockNodes[0].bio}</p>
-            </div>
-          </foreignObject>
+            const index = i % 10;
+            const angle = (index / 10) * 2 * Math.PI;
+            const x = center.x + radius * Math.cos(angle);
+            const y = center.y + radius * Math.sin(angle);
+
+            return (
+              <line
+                key={`line-${node.id}`}
+                x1={center.x}
+                y1={center.y}
+                x2={x}
+                y2={y}
+                stroke="#ccc"
+              />
+            );
+          })}
+
+          {mockNodes.map((node, i) => {
+            let radius = 0;
+            if (node.type === "direct") radius = 100;
+            if (node.type === "recommended") radius = 180;
+            if (node.type === "cross") radius = 260;
+
+            const index = i % 10;
+            const angle = (index / 10) * 2 * Math.PI;
+            const x = center.x + radius * Math.cos(angle);
+            const y = center.y + radius * Math.sin(angle);
+
+            return (
+              <foreignObject
+                key={node.id}
+                x={x - 45}
+                y={y - 45}
+                width="90"
+                height="90"
+                className="node-fo"
+              >
+                <div
+                  className={`node-card ${node.type}`}
+                  onClick={() => setSelectedId(node.id)}
+                >
+                  <img src={node.img} alt={node.name} />
+                  <p>{node.bio}</p>
+                </div>
+              </foreignObject>
+            );
+          })}
         </svg>
 
         <div className="legend">
