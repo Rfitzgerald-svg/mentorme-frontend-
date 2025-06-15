@@ -3,98 +3,44 @@ import "./MyNetwork.css";
 
 const mockNodes = [
   {
-    id: "1",
+    id: "0",
     name: "You",
     role: "Student at The Taft School",
     type: "center",
     img: "https://randomuser.me/api/portraits/men/11.jpg",
-    bio: "Finance and lacrosse. Searching for alumni in business."
+    bio: "Finance and lacrosse. Searching for alumni in business.",
   },
-  {
-    id: "2",
-    name: "Alex Johnson",
-    role: "Mentor at JPMorgan",
+  ...Array.from({ length: 10 }).map((_, i) => ({
+    id: `${i + 1}`,
+    name: `Mentor ${i + 1}`,
+    role: `Mentor at Company ${i + 1}`,
     type: "direct",
-    img: "https://randomuser.me/api/portraits/men/32.jpg",
-    bio: "VP at JPMorgan. Lacrosse captain. Mentor in finance.",
-    mutuals: "Joaquin and 3 others"
-  },
-  {
-    id: "3",
-    name: "Sophie Lee",
-    role: "Student at Taft",
+    img: `https://randomuser.me/api/portraits/men/${20 + i}.jpg`,
+    bio: "Experienced professional. Passionate about mentorship.",
+    mutuals: `${i + 1} mutual connections`,
+  })),
+  ...Array.from({ length: 10 }).map((_, i) => ({
+    id: `${i + 11}`,
+    name: `Peer ${i + 1}`,
+    role: `Student at School ${i + 1}`,
     type: "recommended",
-    img: "https://randomuser.me/api/portraits/women/44.jpg",
-    bio: "Club leader at Taft Women in Business. Finance track.",
-    mutuals: "2 shared activities"
-  },
-  {
-    id: "4",
-    name: "Daniel Kim",
-    role: "Alum at Choate",
+    img: `https://randomuser.me/api/portraits/women/${30 + i}.jpg`,
+    bio: "Active in clubs. Exploring future careers.",
+    mutuals: `Shared classes and clubs`,
+  })),
+  ...Array.from({ length: 9 }).map((_, i) => ({
+    id: `${i + 21}`,
+    name: `Cross ${i + 1}`,
+    role: `Alum at Cross School ${i + 1}`,
     type: "cross",
-    img: "https://randomuser.me/api/portraits/men/85.jpg",
-    bio: "Stanford MBA in private equity. Choate → Business path.",
-    mutuals: "Matched on 4 interests"
-  },
-  {
-    id: "5",
-    name: "Lena Hart",
-    role: "Mentor at Meta",
-    type: "direct",
-    img: "https://randomuser.me/api/portraits/women/65.jpg",
-    bio: "Product manager at Meta. CS + design thinking.",
-    mutuals: "Intro’d via alumni advisor"
-  },
-  {
-    id: "6",
-    name: "Jason Wu",
-    role: "Student at Exeter",
-    type: "cross",
-    img: "https://randomuser.me/api/portraits/men/23.jpg",
-    bio: "Startup club lead. Coding + pitching enthusiast.",
-    mutuals: "4 quiz answers aligned"
-  },
-  {
-    id: "7",
-    name: "Maya Patel",
-    role: "Student at Taft",
-    type: "recommended",
-    img: "https://randomuser.me/api/portraits/women/91.jpg",
-    bio: "STEM + dance. Looking to connect with women in tech.",
-    mutuals: "3 quiz matches"
-  },
-  {
-    id: "8",
-    name: "Noah Brown",
-    role: "Mentor at BCG",
-    type: "direct",
-    img: "https://randomuser.me/api/portraits/men/45.jpg",
-    bio: "Strategy consultant. Ivy grad. Loves mentoring.",
-    mutuals: "Taft alum connection"
-  },
-  {
-    id: "9",
-    name: "Ella Zhang",
-    role: "Alum at Andover",
-    type: "cross",
-    img: "https://randomuser.me/api/portraits/women/33.jpg",
-    bio: "Building in AI. Andover → MIT → YC startup.",
-    mutuals: "Shared startup interest"
-  },
-  {
-    id: "10",
-    name: "Marcus Green",
-    role: "Student at Taft",
-    type: "recommended",
-    img: "https://randomuser.me/api/portraits/men/77.jpg",
-    bio: "Wants to learn about investment banking.",
-    mutuals: "Finance club + 2 mentors"
-  }
+    img: `https://randomuser.me/api/portraits/men/${40 + i}.jpg`,
+    bio: "Entrepreneurial and open to sharing experiences.",
+    mutuals: `3 shared interests`,
+  })),
 ];
 
 export default function MyNetwork() {
-  const [selectedId, setSelectedId] = useState("1");
+  const [selectedId, setSelectedId] = useState("0");
   const [connections, setConnections] = useState({});
 
   const getStatus = (id) => connections[id] || "Connect";
@@ -108,6 +54,40 @@ export default function MyNetwork() {
         ? "Connected"
         : "Connect";
     setConnections({ ...connections, [id]: next });
+  };
+
+  const layers = {
+    center: [mockNodes[0]],
+    direct: mockNodes.slice(1, 11),
+    recommended: mockNodes.slice(11, 21),
+    cross: mockNodes.slice(21),
+  };
+
+  const renderLayer = (nodes, radius, centerX, centerY) => {
+    return nodes.map((node, i) => {
+      const angle = (i / nodes.length) * 2 * Math.PI;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+
+      return (
+        <foreignObject
+          key={node.id}
+          x={x - 45}
+          y={y - 45}
+          width="90"
+          height="90"
+          className="node-fo"
+        >
+          <div
+            className={`node-card ${node.type}`}
+            onClick={() => setSelectedId(node.id)}
+          >
+            <img src={node.img} alt={node.name} />
+            <p>{node.bio}</p>
+          </div>
+        </foreignObject>
+      );
+    });
   };
 
   return (
@@ -147,45 +127,18 @@ export default function MyNetwork() {
 
       <div className="network-right">
         <svg className="spiderweb">
-          {mockNodes.slice(1).map((node, i) => {
-            const angle = (i / (mockNodes.length - 1)) * 2 * Math.PI;
-            const x = 300 + 150 * Math.cos(angle);
-            const y = 200 + 150 * Math.sin(angle);
-            return (
-              <line
-                key={`line-${node.id}`}
-                x1={300}
-                y1={200}
-                x2={x}
-                y2={y}
-                stroke="#ccc"
-              />
-            );
-          })}
-          {mockNodes.map((node, i) => {
-            const angle = (i / mockNodes.length) * 2 * Math.PI;
-            const x = 300 + 150 * Math.cos(angle);
-            const y = 200 + 150 * Math.sin(angle);
-            return (
-              <foreignObject
-                key={node.id}
-                x={x - 45}
-                y={y - 45}
-                width="90"
-                height="90"
-                className="node-fo"
-              >
-                <div
-                  className={`node-card ${node.type}`}
-                  onClick={() => setSelectedId(node.id)}
-                >
-                  <img src={node.img} alt={node.name} />
-                  <p>{node.bio}</p>
-                </div>
-              </foreignObject>
-            );
-          })}
+          {renderLayer(layers.direct, 150, 400, 250)}
+          {renderLayer(layers.recommended, 220, 400, 250)}
+          {renderLayer(layers.cross, 300, 400, 250)}
+
+          <foreignObject x={400 - 45} y={250 - 45} width="90" height="90">
+            <div className="node-card center">
+              <img src={mockNodes[0].img} alt="You" />
+              <p>{mockNodes[0].bio}</p>
+            </div>
+          </foreignObject>
         </svg>
+
         <div className="legend">
           <h4>Legend</h4>
           <ul>
