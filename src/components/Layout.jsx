@@ -19,6 +19,7 @@ export default function Layout({ children }) {
             <li><Link to="/bot" className={current.includes("/bot") ? "active" : ""}>🤖 My Bot</Link></li>
             <li><Link to="/admin" className={current.includes("/admin") ? "active" : ""}>🛠 Admin</Link></li>
             <li><Link to="/profile" className={current.includes("/profile") ? "active" : ""}>👤 My Profile</Link></li>
+            <li><Link to="/messages" className={current.includes("/messages") ? "active" : ""}>💬 Mentor Messages</Link></li>
           </ul>
         </nav>
         <button className="collapse-btn" onClick={() => setCollapsed(!collapsed)}>
