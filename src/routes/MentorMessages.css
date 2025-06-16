@@ -1,0 +1,145 @@
+.mentor-messages {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.message-sidebar {
+  width: 300px;
+  background: #f4f4f4;
+  border-right: 1px solid #ddd;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.message-thread-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.message-thread-preview:hover {
+  background: #eaeaea;
+}
+
+.message-thread-preview img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.message-snippet {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-snippet strong {
+  font-size: 0.95rem;
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.message-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background: #f9fbfe;
+}
+
+.thread-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.thread-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: #003366;
+  color: white;
+  font-weight: bold;
+}
+
+.thread-body {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.thread-body .message {
+  margin-bottom: 1rem;
+}
+
+.thread-body .message strong {
+  color: #003366;
+}
+
+.message-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.message-tags button {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  background: #eee;
+  border: none;
+  cursor: pointer;
+}
+
+.message-tags button.active {
+  background: #003366;
+  color: white;
+}
+
+.message-input {
+  display: flex;
+  gap: 1rem;
+}
+
+.message-input textarea {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: none;
+  height: 60px;
+}
+
+.message-input button {
+  background: #003366;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.message-input button:hover {
+  background: #005599;
+}
