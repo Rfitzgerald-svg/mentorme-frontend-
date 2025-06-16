@@ -1,29 +1,24 @@
 import React, { useState } from "react";
 import "./MentorMessages.css";
 
-const mockThreads = [
+const mockConversations = [
   {
     id: 1,
     name: "Alex Johnson",
-    role: "Mentor",
-    profilePic: "https://randomuser.me/api/portraits/men/11.jpg",
-    lastMessage: "Looking forward to connecting!",
-    timestamp: "2h ago",
+    role: "Mentor at JPMorgan",
+    avatar: "https://randomuser.me/api/portraits/men/22.jpg",
     messages: [
-      { from: "Alex", text: "Looking forward to connecting!", time: "2h ago" },
-      { from: "You", text: "Me too! Just filled out my quiz.", time: "1h ago" },
+      { sender: "Alex Johnson", text: "Looking forward to connecting!", time: "2h ago" },
+      { sender: "You", text: "Me too! Just filled out my quiz.", time: "1h ago" },
     ],
   },
   {
     id: 2,
     name: "Sophie Lee",
-    role: "Mentor",
-    profilePic: "https://randomuser.me/api/portraits/women/44.jpg",
-    lastMessage: "Let’s schedule something next week.",
-    timestamp: "1d ago",
+    role: "Mentor at Spotify",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
     messages: [
-      { from: "Sophie", text: "Let’s schedule something next week.", time: "1d ago" },
-      { from: "You", text: "Sounds great! I’m free Tues or Thurs.", time: "1d ago" },
+      { sender: "Sophie Lee", text: "Let’s schedule something next week.", time: "1d ago" },
     ],
   },
 ];
@@ -31,55 +26,80 @@ const mockThreads = [
 export default function MentorMessages() {
   const [selectedId, setSelectedId] = useState(1);
   const [input, setInput] = useState("");
-  const thread = mockThreads.find((t) => t.id === selectedId);
+  const [convos, setConvos] = useState(mockConversations);
+
+  const selected = convos.find((c) => c.id === selectedId);
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const updated = convos.map((c) => {
+      if (c.id === selectedId) {
+        return {
+          ...c,
+          messages: [...c.messages, { sender: "You", text: input, time: "Just now" }],
+        };
+      }
+      return c;
+    });
+    setConvos(updated);
+    setInput("");
+  };
 
   return (
-    <div className="messages-wrapper">
-      <aside className="inbox-list">
-        {mockThreads.map((t) => (
-          <div
-            key={t.id}
-            className={`thread-preview ${t.id === selectedId ? "selected" : ""}`}
-            onClick={() => setSelectedId(t.id)}
-          >
-            <img src={t.profilePic} alt={t.name} />
-            <div className="text">
-              <strong>{t.name}</strong> <span className="badge">{t.role}</span>
-              <p>{t.lastMessage}</p>
+    <div className="mentor-messages-wrapper">
+      <div className="sidebar-inbox">
+        <h2>Inbox</h2>
+        {convos.map((c) => {
+          const lastMsg = c.messages[c.messages.length - 1];
+          return (
+            <div
+              key={c.id}
+              className={`conversation-preview ${selectedId === c.id ? "active" : ""}`}
+              onClick={() => setSelectedId(c.id)}
+            >
+              <img src={c.avatar} alt={c.name} />
+              <div>
+                <strong>{c.name}</strong>
+                <p>{lastMsg?.text}</p>
+                <span>{lastMsg?.time}</span>
+              </div>
             </div>
-            <span className="timestamp">{t.timestamp}</span>
-          </div>
-        ))}
-      </aside>
+          );
+        })}
+      </div>
 
-      <main className="message-thread">
-        <div className="thread-header">
-          <h3>{thread.name}</h3>
-          <span className="badge">{thread.role}</span>
+      <div className="chat-view">
+        <div className="chat-header">
+          <img src={selected.avatar} alt={selected.name} />
+          <div>
+            <h3>{selected.name}</h3>
+            <p>{selected.role}</p>
+          </div>
         </div>
 
-        <div className="thread-body">
-          {thread.messages.map((m, i) => (
-            <div key={i} className={`msg ${m.from === "You" ? "sent" : "received"}`}>
-              <p>{m.text}</p>
-              <span>{m.time}</span>
+        <div className="chat-thread">
+          {selected.messages.map((msg, i) => (
+            <div key={i} className={`msg-bubble ${msg.sender === "You" ? "sent" : "received"}`}>
+              <p>{msg.text}</p>
+              <span>{msg.time}</span>
             </div>
           ))}
         </div>
 
-        <div className="thread-input">
+        <div className="chat-input">
           <input
-            type="text"
-            placeholder="Type a message..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            placeholder="Type a message..."
           />
-          <button className="send-btn">Send</button>
-          <button className="tag-btn">Follow Up</button>
-          <button className="tag-btn">Scheduled</button>
-          <button className="tag-btn">Resolved</button>
+          <button onClick={handleSend}>Send</button>
+          <div className="tag-buttons">
+            <button>Follow Up</button>
+            <button>Scheduled</button>
+            <button>Resolved</button>
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
