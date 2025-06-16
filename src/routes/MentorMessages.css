@@ -2,126 +2,154 @@
   display: flex;
   height: 100vh;
   font-family: 'Inter', sans-serif;
-  background-color: #f5f7fa;
+  background-color: #f3f4f6;
 }
 
 .sidebar-pane {
-  width: 300px;
-  background: #ffffff;
-  border-right: 1px solid #e5e7eb;
-  overflow-y: auto;
+  width: 320px;
+  border-right: 1px solid #ddd;
+  background: white;
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
 }
 
 .search-input {
-  width: 100%;
   padding: 0.6rem;
-  margin-bottom: 1rem;
+  font-size: 0.9rem;
   border: 1px solid #ccc;
   border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
 }
 
 .message-preview {
   display: flex;
   align-items: center;
   padding: 0.75rem;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
+  border-radius: 10px;
   transition: background 0.2s ease;
+  cursor: pointer;
+  gap: 0.75rem;
 }
 
 .message-preview:hover {
-  background-color: #f0f2f5;
+  background-color: #f0f4f9;
+}
+
+.message-preview.active {
+  background-color: #dbeafe;
 }
 
 .message-preview img {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  margin-right: 0.75rem;
 }
 
-.preview-text {
+.preview-meta {
   flex: 1;
 }
 
-.preview-text strong {
+.preview-meta strong {
   font-size: 0.95rem;
+  color: #111827;
+}
+
+.preview-meta small {
+  font-size: 0.8rem;
+  color: #6b7280;
   display: block;
-}
-
-.preview-text small {
-  font-size: 0.75rem;
-  color: #666;
-}
-
-.active {
-  background-color: #e5f0ff;
+  margin-top: 2px;
 }
 
 .chat-pane {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
-  overflow-y: auto;
-  background-color: #ffffff;
+  background: #f9fafb;
 }
 
 .thread {
   flex: 1;
   overflow-y: auto;
-  margin-bottom: 1rem;
+  padding: 1.5rem;
 }
 
 .message-block {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .message-block img {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   float: left;
   margin-right: 0.75rem;
 }
 
-.message-block p {
-  margin: 0.25rem 0 0.5rem 0;
+.message-content {
+  overflow: hidden;
+}
+
+.message-content strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #111827;
+  margin-bottom: 0.2rem;
+}
+
+.message-content p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: #374151;
 }
 
 .timestamp {
   font-size: 0.75rem;
-  color: #888;
+  color: #9ca3af;
+  margin-top: 0.25rem;
 }
 
-.input-row {
+.input-bar {
   display: flex;
   align-items: center;
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+  background: white;
   gap: 0.5rem;
 }
 
-.input-row input[type="text"] {
+.input-bar input[type="text"] {
   flex: 1;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 0.7rem;
   font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
-.input-row button {
-  padding: 0.55rem 0.9rem;
-  font-size: 0.85rem;
-  border: none;
-  border-radius: 6px;
-  background-color: #003366;
+.input-bar button {
+  background: #003366;
   color: white;
   font-weight: 600;
+  border: none;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 0.85rem;
 }
 
-.input-row .tag-button {
-  background: #e0e7ff;
-  color: #333;
+.tag-button {
+  background-color: #e0e7ff;
+  border: none;
+  color: #374151;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
 }
