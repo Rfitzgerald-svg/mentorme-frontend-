@@ -19,6 +19,7 @@ import AdminPanel from "./routes/AdminPanel.jsx";
 import Demo from "./routes/Demo.jsx";
 import Profile from "./routes/Profile.jsx";
 import ProfilePublic from "./routes/ProfilePublic.jsx";
+import MentorMessages from "./routes/MentorMessages.jsx";
 
 import Layout from "./components/Layout";
 
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/protips" element={<Layout><ProTips /></Layout>} />
         <Route path="/admin" element={<Layout><AdminPanel /></Layout>} />
         <Route path="/profile" element={<Layout><Profile /></Layout>} />
+        <Route path="/messages" element={<Layout><MentorMessages /></Layout>} />
         <Route path="/profilepublic" element={<ProfilePublic />} />
         <Route path="/chat/:matchId" element={<ChatRoom />} />
         <Route path="/calendar" element={<CalendarPage />} />
