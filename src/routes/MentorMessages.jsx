@@ -1,5 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "./MentorMessages.css";
+
+const slots = [
+  "Monday 10:00 AM",
+  "Monday 2:00 PM",
+  "Tuesday 11:00 AM",
+  "Wednesday 1:00 PM",
+  "Friday 3:00 PM"
+];
 
 const mockConversations = [
   {
@@ -31,13 +39,110 @@ const mockConversations = [
       },
     ],
   },
+  {
+    id: 3,
+    name: "Sophie Lee",
+    title: "Mentor at Goldman Sachs",
+    messages: [
+      {
+        sender: "Sophie",
+        time: "2h ago",
+        text: "Let’s schedule something next week.",
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "Daniel Kim",
+    title: "Student at Taft",
+    messages: [
+      {
+        sender: "Daniel",
+        time: "1d ago",
+        text: "Any tips for the career fair?",
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: "Emma Thompson",
+    title: "Alum at Harvard",
+    messages: [
+      {
+        sender: "Emma",
+        time: "3h ago",
+        text: "Congrats on the internship!",
+      },
+    ],
+  },
+  {
+    id: 6,
+    name: "Jason Wu",
+    title: "Founder at EduStart",
+    messages: [
+      {
+        sender: "Jason",
+        time: "Yesterday",
+        text: "Want to collaborate on a student panel?",
+      },
+    ],
+  },
+  {
+    id: 7,
+    name: "Liam Patel",
+    title: "Mentor at BCG",
+    messages: [
+      {
+        sender: "Liam",
+        time: "4h ago",
+        text: "Your profile stood out. Let’s chat!",
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: "Ava Thomas",
+    title: "Peer at Choate",
+    messages: [
+      {
+        sender: "Ava",
+        time: "6h ago",
+        text: "Want to start a club together?",
+      },
+    ],
+  },
+  {
+    id: 9,
+    name: "Jayden Wu",
+    title: "Product Manager at Google",
+    messages: [
+      {
+        sender: "Jayden",
+        time: "1w ago",
+        text: "Hope the school year is going well!",
+      },
+    ],
+  },
+  {
+    id: 10,
+    name: "Nina Rivera",
+    title: "Designer at IDEO",
+    messages: [
+      {
+        sender: "Nina",
+        time: "2w ago",
+        text: "Just published a new article on mentorship!",
+      },
+    ],
+  },
 ];
 
 export default function MentorMessages() {
   const [selectedId, setSelectedId] = useState(1);
   const [input, setInput] = useState("");
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [bookedSlot, setBookedSlot] = useState(null);
   const [conversations, setConversations] = useState(mockConversations);
-  const threadRef = useRef(null);
 
   const current = conversations.find((c) => c.id === selectedId);
 
@@ -55,14 +160,23 @@ export default function MentorMessages() {
     setInput("");
   };
 
-  useEffect(() => {
-    if (threadRef.current) {
-      threadRef.current.scrollTop = threadRef.current.scrollHeight;
-    }
-  }, [conversations]);
+  const handleBook = (slot) => {
+    setBookedSlot(slot);
+    setShowCalendar(false);
+    const updated = conversations.map((c) =>
+      c.id === selectedId
+        ? {
+            ...c,
+            messages: [...c.messages, { sender: "You", time: "Just now", text: `Scheduled: ${slot}` }],
+          }
+        : c
+    );
+    setConversations(updated);
+  };
 
   return (
     <div className="messages-wrapper">
+      {/* LEFT SIDEBAR */}
       <div className="sidebar-pane">
         <h2>Messaging</h2>
         <input className="search-input" placeholder="Search messages" />
@@ -86,6 +200,7 @@ export default function MentorMessages() {
         ))}
       </div>
 
+      {/* RIGHT CONVERSATION VIEW */}
       <div className="chat-pane">
         <div className="chat-header">
           <div>
@@ -95,16 +210,34 @@ export default function MentorMessages() {
           <span className="options">•••</span>
         </div>
 
-        <div className="chat-thread" ref={threadRef}>
+        <div className="chat-thread">
           <div className="chat-date">JUNE 16, 2025</div>
           {current.messages.map((msg, idx) => (
-            <div key={idx} className={`message-bubble ${msg.sender === "You" ? "right" : "left"}`}>
+            <div key={idx} className="message-bubble">
               <strong>{msg.sender}</strong>
               <p>{msg.text}</p>
               <span className="timestamp">{msg.time}</span>
             </div>
           ))}
         </div>
+
+        {showCalendar && (
+          <div className="calendar-modal">
+            <h4>Pick a time to meet</h4>
+            <div className="calendar-grid">
+              {slots.map((slot, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleBook(slot)}
+                  disabled={bookedSlot === slot}
+                  className={bookedSlot === slot ? "booked" : "available"}
+                >
+                  {bookedSlot === slot ? "Booked: " : ""}{slot}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="input-bar">
           <input
@@ -117,8 +250,11 @@ export default function MentorMessages() {
           <button disabled={!input.trim()} onClick={handleSend}>
             Send
           </button>
+          <button className="schedule-btn" onClick={() => setShowCalendar(!showCalendar)}>
+            📅 Schedule
+          </button>
         </div>
       </div>
     </div>
   );
-}
+} 
