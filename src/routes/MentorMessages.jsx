@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./MentorMessages.css";
 
 const mockConversations = [
@@ -37,6 +37,7 @@ export default function MentorMessages() {
   const [selectedId, setSelectedId] = useState(1);
   const [input, setInput] = useState("");
   const [conversations, setConversations] = useState(mockConversations);
+  const threadRef = useRef(null);
 
   const current = conversations.find((c) => c.id === selectedId);
 
@@ -54,9 +55,14 @@ export default function MentorMessages() {
     setInput("");
   };
 
+  useEffect(() => {
+    if (threadRef.current) {
+      threadRef.current.scrollTop = threadRef.current.scrollHeight;
+    }
+  }, [conversations]);
+
   return (
     <div className="messages-wrapper">
-      {/* LEFT SIDEBAR */}
       <div className="sidebar-pane">
         <h2>Messaging</h2>
         <input className="search-input" placeholder="Search messages" />
@@ -80,7 +86,6 @@ export default function MentorMessages() {
         ))}
       </div>
 
-      {/* RIGHT CONVERSATION VIEW */}
       <div className="chat-pane">
         <div className="chat-header">
           <div>
@@ -90,10 +95,10 @@ export default function MentorMessages() {
           <span className="options">•••</span>
         </div>
 
-        <div className="chat-thread">
+        <div className="chat-thread" ref={threadRef}>
           <div className="chat-date">JUNE 16, 2025</div>
           {current.messages.map((msg, idx) => (
-            <div key={idx} className="message-bubble">
+            <div key={idx} className={`message-bubble ${msg.sender === "You" ? "right" : "left"}`}>
               <strong>{msg.sender}</strong>
               <p>{msg.text}</p>
               <span className="timestamp">{msg.time}</span>
