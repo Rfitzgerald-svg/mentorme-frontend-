@@ -4,94 +4,114 @@ import "./MentorMessages.css";
 const mockConversations = [
   {
     id: 1,
-    name: "Sophie Lee",
-    avatar: "https://randomuser.me/api/portraits/women/32.jpg",
-    role: "Mentor at Goldman Sachs",
-    preview: "Let’s schedule something next week.",
-    time: "1h ago",
+    name: "Mary Katherine Montgomery",
+    title: "Head Math Teacher at Benchmark School",
     messages: [
-      { from: "Sophie", text: "Let’s schedule something next week.", time: "1h ago" },
-      { from: "You", text: "Sounds great! I just filled out my quiz.", time: "Just now" },
+      {
+        sender: "Mary",
+        time: "4:46 PM",
+        text: "Hi Russell,\nNice to meet you.\nAll the best,\nYour biggest fan!",
+      },
     ],
   },
   {
     id: 2,
     name: "Alex Johnson",
-    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
-    role: "Mentor at JPMorgan",
-    preview: "Looking forward to connecting!",
-    time: "2h ago",
+    title: "Mentor at JPMorgan",
     messages: [
-      { from: "Alex", text: "Looking forward to connecting!", time: "2h ago" },
-      { from: "You", text: "Me too! Just filled out my quiz.", time: "1h ago" },
+      {
+        sender: "Alex",
+        time: "2h ago",
+        text: "Looking forward to connecting!",
+      },
+      {
+        sender: "You",
+        time: "1h ago",
+        text: "Me too! Just filled out my quiz.",
+      },
     ],
   },
 ];
 
 export default function MentorMessages() {
-  const [selectedId, setSelectedId] = useState(mockConversations[0].id);
+  const [selectedId, setSelectedId] = useState(1);
   const [input, setInput] = useState("");
+  const [conversations, setConversations] = useState(mockConversations);
 
-  const selected = mockConversations.find((c) => c.id === selectedId);
+  const current = conversations.find((c) => c.id === selectedId);
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const updated = conversations.map((c) =>
+      c.id === selectedId
+        ? {
+            ...c,
+            messages: [...c.messages, { sender: "You", time: "Just now", text: input }],
+          }
+        : c
+    );
+    setConversations(updated);
+    setInput("");
+  };
 
   return (
-    <div className="mentor-messages-wrapper">
-      <div className="inbox-list">
+    <div className="messages-wrapper">
+      {/* LEFT SIDEBAR */}
+      <div className="sidebar-pane">
         <h2>Messaging</h2>
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search messages"
-        />
-        {mockConversations.map((convo) => (
+        <input className="search-input" placeholder="Search messages" />
+        <div className="tabs">
+          {["Focused", "Jobs", "Unread", "My Connections", "InMail", "Starred"].map((t) => (
+            <button key={t}>{t}</button>
+          ))}
+        </div>
+        {conversations.map((conv) => (
           <div
-            key={convo.id}
-            className={`inbox-item ${selectedId === convo.id ? "active" : ""}`}
-            onClick={() => setSelectedId(convo.id)}
+            key={conv.id}
+            className={`message-preview ${selectedId === conv.id ? "active" : ""}`}
+            onClick={() => setSelectedId(conv.id)}
           >
-            <img src={convo.avatar} alt={convo.name} />
-            <div>
-              <strong>{convo.name}</strong>
-              <p>{convo.preview}</p>
-              <span className="timestamp">{convo.time}</span>
+            <img src={`https://randomuser.me/api/portraits/women/${conv.id + 20}.jpg`} />
+            <div className="preview-text">
+              <strong>{conv.name}</strong>
+              <small>{conv.messages[conv.messages.length - 1].text.slice(0, 40)}...</small>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="message-thread">
-        <div className="thread-header">
-          <img src={selected.avatar} alt={selected.name} />
+      {/* RIGHT CONVERSATION VIEW */}
+      <div className="chat-pane">
+        <div className="chat-header">
           <div>
-            <h3>{selected.name}</h3>
-            <p>{selected.role}</p>
+            <h3>{current.name}</h3>
+            <p>{current.title}</p>
           </div>
+          <span className="options">•••</span>
         </div>
 
-        <div className="thread-body">
-          {selected.messages.map((msg, i) => (
-            <div key={i} className="message">
-              <strong>{msg.from}</strong>
+        <div className="chat-thread">
+          <div className="chat-date">JUNE 16, 2025</div>
+          {current.messages.map((msg, idx) => (
+            <div key={idx} className="message-bubble">
+              <strong>{msg.sender}</strong>
               <p>{msg.text}</p>
               <span className="timestamp">{msg.time}</span>
             </div>
           ))}
         </div>
 
-        <div className="message-input-bar">
+        <div className="input-bar">
           <input
             type="text"
-            placeholder="Write a message..."
+            placeholder="Write a message…"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <button>Send</button>
-        </div>
-
-        <div className="message-tags">
-          <button>Follow Up</button>
-          <button>Scheduled</button>
-          <button>Resolved</button>
+          <span className="icons">📎 😊 📷</span>
+          <button disabled={!input.trim()} onClick={handleSend}>
+            Send
+          </button>
         </div>
       </div>
     </div>
